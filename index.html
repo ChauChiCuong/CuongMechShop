@@ -36,6 +36,7 @@
             visibility: visible !important;
             position: relative;
             overflow-x: hidden;
+            color: #333;
         }
 
         /* Mech-themed animated background */
@@ -216,6 +217,12 @@
             color: #e5e7eb;
         }
 
+        .text-gray-600 {
+            color: #444;
+        }
+        .text-gray-800 {
+            color: #111;
+        }
         .dark .text-gray-600,
         .dark .text-gray-800 {
             color: #e5e7eb;
@@ -321,6 +328,7 @@
                         </div>
                     </div>
                 </div>
+                
             </div>
         </div>
     </header>
@@ -354,10 +362,10 @@
     <section class="hero-pattern py-16 md:py-24">
         <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
             <div class="md:w-1/2 mb-10 md:mb-0">
-                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4 animate__animated animate__fadeInDown">
-                    Precision <span class="text-cyan-500">Mechanical</span> Solutions
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4 animate__animated animate__fadeInDown">
+                    <span class="text-white">Precision</span> <span class="text-cyan-600">Mechanical</span> <span class="text-orange-500">Solutions</span>
                 </h2>
-                <p class="text-xl text-gray-600 mb-6">
+                <p class="text-xl text-white mb-6">
                     Dịch vụ buôn bán Mech chuyên nghiệp, chất lượng cao. Đảm bảo cam kết an toàn, uy tín.
                 </p>
                 <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
@@ -368,6 +376,7 @@
                         Menu Shop
                     </a>
                 </div>
+                
             </div>
             
             <div class="md:w-1/2 flex justify-center">
@@ -384,6 +393,7 @@
                         <i class="fas fa-gear text-cyan-500 text-xl"></i>
                     </div>
                 </div>
+                
             </div>
         </div>
     </section>
@@ -394,16 +404,17 @@
             <div class="text-center mb-16 animate__animated animate__fadeIn">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4 animate__animated animate__fadeInUp">Menu <span class="text-cyan-500">Cuong Mech Shop</span></h2>
                 <p class="text-gray-600 max-w-2xl mx-auto">Shop cung cấp cho bạn các vật phẩm toàn diện cho các ứng dụng trận đấu và nâng tầm giá trị tài khoản của bạn.</p>
+                
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Service Card 1 -->
+                <!-- Shop Thông Thường -->
                 <div class="service-card bg-gray-50 rounded-xl p-8 shadow-md transition-all duration-300 animate__animated animate__fadeInUp">
                     <div class="w-16 h-16 rounded-full bg-cyan-100 flex items-center justify-center mb-6">
                         <i class="fas fa-wrench text-cyan-500 text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3">Shop Thông Thường</h3>
-                    <p class="text-gray-600 mb-4">Bán vật phẩm thiết yếu nằm trong vòng giới hạn cho phép.</p>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Shop Thông Thường</h3>
+                    <p class="text-gray-700 mb-4">Bán vật phẩm thiết yếu nằm trong vòng giới hạn cho phép.</p>
                     <button onclick="toggleExpand(this)" class="text-cyan-500 font-medium flex items-center">
                         Xem thêm <i class="fas fa-arrow-right ml-2 text-sm"></i>
                     </button>
@@ -437,7 +448,7 @@
                     </div>
                 </div>
                 
-                <!-- Service Card 2 -->
+                <!-- Shop Acc Combo Khởi Đầu -->
                 <div class="service-card bg-gray-50 rounded-xl p-8 shadow-md transition-all duration-300 animate__animated animate__fadeInUp">
                     <div class="w-16 h-16 rounded-full bg-orange-100 flex items-center justify-center mb-6">
                         <i class="fas fa-screwdriver text-orange-500 text-2xl"></i>
@@ -563,7 +574,7 @@
                     </div>
                 </div>
                 
-                <!-- Service Card 3 -->
+                <!-- Shop Chợ Đen -->
                 <div class="service-card bg-gray-50 rounded-xl p-8 shadow-md transition-all duration-300 animate__animated animate__fadeInUp">
                     <div class="w-16 h-16 rounded-full bg-cyan-100 flex items-center justify-center mb-6">
                         <i class="fas fa-hammer text-cyan-500 text-2xl"></i>
@@ -598,6 +609,77 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Sự Kiện và Khuyến mãi -->
+                <div class="service-card bg-gray-50 rounded-xl p-8 shadow-md transition-all duration-300 animate__animated animate__fadeInUp">
+                    <div class="w-16 h-16 rounded-full bg-orange-100 flex items-center justify-center mb-6">
+                        <i class="fas fa-calendar-alt text-orange-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Sự Kiện và Khuyến mãi</h3>
+                    <p class="text-gray-600 mb-4">Các chương trình khuyến mãi và sự kiện đặc biệt đang diễn ra.</p>
+                    <button onclick="toggleExpand(this)" class="text-cyan-500 font-medium flex items-center">
+                        Xem thêm <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                    </button>
+                    <div class="hidden overflow-hidden transition-all duration-300 max-h-0" data-expanded="false">
+                        <div class="pt-4 text-gray-600">
+                            <p class="mb-2">Các chương trình khuyến mãi hiện tại:</p>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>Giảm 20% cho đơn hàng thứ ba: Áp dụng cho tất cả dịch vụ</li>
+                                <li>Khuyến mãi tháng: Giảm 20% cho các gói Acc trên 60k</li>
+                                <li>Chương trình tích điểm: Mỗi 100k tích 1 điểm, đổi quà chọn menu bất kì sau 10 điểm</li>
+                                <li>Giảm 50% cho sinh nhật: Áp dụng khi mua trên 400k trong tháng sinh nhật của bạn</li>
+                            </ul>
+                            <p class="mt-4 mb-2">Sự kiện sắp tới:</p>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>White Sunday Morning: Giảm sốc lên tới 20% khi mua trên 200k</li>
+                                <li>Cyber Monday: Menu gói cao cấp sẽ xuất hiện trong một ngày duy nhất</li>
+                                <li>Tài khoản SSS-VIP: Tài khoản Falcon-AA122 top 14 sercer giá 1tr2 (giảm 30%)</li>
+                                <li>Kỷ niệm 3 năm thành lập: tặng 1 Ticket free chọn 1 trong Shop Thông Thường</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Notice Section -->
+    <section class="py-12 bg-orange-50 dark:bg-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto bg-white dark:bg-gray-700 rounded-xl shadow-md p-8">
+                <h2 class="text-2xl font-bold text-orange-500 dark:text-orange-400 mb-4">Lưu ý quan trọng khi mua hàng</h2>
+                <div class="space-y-4 text-gray-700 dark:text-gray-300">
+                    <div class="flex items-start">
+                        <div class="text-orange-500 mt-1 mr-3">
+                            <i class="fas fa-exclamation-circle"></i>
+                        </div>
+                        <p>Shop chỉ nhận thanh toán qua chuyển khoản ngân hàng</p>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="text-orange-500 mt-1 mr-3">
+                            <i class="fas fa-exclamation-circle"></i>
+                        </div>
+                        <p>Shop sẽ không chịu trắc nhiệm sau khi hoàn thành giao dịch</p>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="text-orange-500 mt-1 mr-3">
+                            <i class="fas fa-exclamation-circle"></i>
+                        </div>
+                        <p>Không hoàn tiền sau khi giao dịch hoàn tất</p>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="text-orange-500 mt-1 mr-3">
+                            <i class="fas fa-exclamation-circle"></i>
+                        </div>
+                        <p>Thời gian xử lý đơn hàng từ 5p - 2h tùy dịch vụ</p>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="text-orange-500 mt-1 mr-3">
+                            <i class="fas fa-exclamation-circle"></i>
+                        </div>
+                        <p>Liên hệ Zalo trước khi mua hàng để được tư vấn</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -617,8 +699,8 @@
                 </div>
                 
                 <div class="md:w-1/2 md:pl-12">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-gray-100 mb-6">Thông tin về <span class="text-orange-500 dark:text-orange-400">Cuong Mech Shop</span></h2>
-                    <p class="text-gray-600 dark:text-gray-300 mb-6">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-6">Thông tin về <span class="text-orange-600 dark:text-orange-400">Cuong Mech Shop</span></h2>
+                    <p class="text-gray-700 dark:text-gray-300 mb-6">
                         Năm 2022, Cường Mech Shop là một cửa hàng nho nhỏ bán vật phẩm trong các giới Liên minh Mech rộng lớn. Nhờ sự kiên cường và quyết tâm bao gian nan vượt khó, Cường Mech Shop được các giới Liên minh tin tưởng và xếp vào danh sách nằm trong Top những cửa hàng uy tín nhất hành tinh.
                     </p>
                     <p class="text-gray-600 dark:text-gray-300 mb-8">
@@ -742,7 +824,7 @@
         <div class="container mx-auto px-4">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="mb-4 md:mb-0">
-                    <p>&copy; 2022 - 2025 Cuong Mech Shop. Dự án của SE192582 - FPTU HCM.</p>
+                    <p>&copy; 2022 - 2025 Cuong Mech Shop. Dự án tốt nghiệp của SE192582 - FPTU HCM.</p>
                     <p class="text-sm mt-1">Cập nhật lần cuối: <span id="last-updated"></span></p>
                 </div>
                 <div class="flex flex-col items-center md:items-end">
