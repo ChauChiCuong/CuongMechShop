@@ -394,9 +394,23 @@
                         <div class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center overflow-hidden cursor-pointer" id="userMenuButton">
                             <img src="https://i.postimg.cc/TwSZBJrZ/CMS-user-logo.png" alt="Guest" class="w-full h-full object-cover">
                         </div>
-                        <div id="userMenuDropdown" class="hidden absolute right-0 mt-2 w-32 bg-white dark:bg-gray-800 rounded-md shadow-lg z-10">
-                            <a href="https://chauchicuong.github.io/CuongMechShop-signin/" class="block px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Đăng nhập</a>
-                            <a href="https://chauchicuong.github.io/CuongMechShop-createaccount/" class="block px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Đăng ký</a>
+                        <div id="userMenuDropdown" class="hidden absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-md shadow-lg z-10">
+                            <!-- Guest state (default) -->
+                            <div id="guestMenu">
+                                <a href="https://chauchicuong.github.io/CuongMechShop-signin/" class="block px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Đăng nhập</a>
+                                <a href="https://chauchicuong.github.io/CuongMechShop-createaccount/" class="block px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Đăng ký</a>
+                            </div>
+                            
+                            <!-- Logged-in state (hidden by default) -->
+                            <div id="userMenu" class="hidden">
+                                <div class="px-4 py-2 border-b border-gray-200 dark:border-gray-700">
+                                    <div class="font-medium text-gray-900 dark:text-white">Player123</div>
+                                    <div class="text-xs text-gray-500 dark:text-gray-400">VIP: 500 ngày</div>
+                                </div>
+                                <a href="#" class="block px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Tài khoản của tôi</a>
+                                <a href="#" class="block px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Lịch sử giao dịch</a>
+                                <a href="#" id="logoutBtn" class="block px-4 py-2 text-red-600 hover:bg-gray-100 dark:hover:bg-gray-700">Đăng xuất</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1043,6 +1057,22 @@
         // User menu functionality
         const userMenuButton = document.getElementById('userMenuButton');
         const userMenuDropdown = document.getElementById('userMenuDropdown');
+        const guestMenu = document.getElementById('guestMenu');
+        const userMenu = document.getElementById('userMenu');
+        const logoutBtn = document.getElementById('logoutBtn');
+
+        // Check login state from localStorage
+        const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+        
+        if (isLoggedIn) {
+            guestMenu.classList.add('hidden');
+            userMenu.classList.remove('hidden');
+            // Update user avatar if available
+            const userAvatar = localStorage.getItem('userAvatar');
+            if (userAvatar) {
+                document.querySelector('#userMenuButton img').src = userAvatar;
+            }
+        }
 
         userMenuButton.addEventListener('click', () => {
             userMenuDropdown.classList.toggle('hidden');
@@ -1053,6 +1083,33 @@
             if (!userMenuButton.contains(e.target) && !userMenuDropdown.contains(e.target)) {
                 userMenuDropdown.classList.add('hidden');
             }
+        });
+
+        // Sample login function (would be called after successful login)
+        function loginUser() {
+            localStorage.setItem('isLoggedIn', 'true');
+            localStorage.setItem('userAvatar', 'https://i.postimg.cc/TwSZBJrZ/CMS-user-logo.png');
+            guestMenu.classList.add('hidden');
+            userMenu.classList.remove('hidden');
+            document.querySelector('#userMenuButton img').src = 'https://i.postimg.cc/TwSZBJrZ/CMS-user-logo.png';
+            userMenuDropdown.classList.add('hidden');
+        }
+
+        // Logout function
+        logoutBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            localStorage.removeItem('isLoggedIn');
+            localStorage.removeItem('userAvatar');
+            guestMenu.classList.remove('hidden');
+            userMenu.classList.add('hidden');
+            document.querySelector('#userMenuButton img').src = 'https://i.postimg.cc/TwSZBJrZ/CMS-user-logo.png';
+            userMenuDropdown.classList.add('hidden');
+        });
+
+        // For demo purposes - simulate login with sample account
+        document.addEventListener('DOMContentLoaded', () => {
+            // Uncomment this line to auto-login the sample account for demo
+            // loginUser();
         });
 
         // Mobile menu functionality
