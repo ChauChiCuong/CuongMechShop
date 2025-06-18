@@ -246,6 +246,24 @@
             transform: scale(1.05) rotate(5deg);
         }
 
+        /* VIP Badge */
+        .vip-badge {
+            background: linear-gradient(135deg, #ffd700 0%, #d4af37 50%, #ffd700 100%);
+            color: #000;
+            font-weight: bold;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            display: inline-flex;
+            align-items: center;
+            margin-left: 8px;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+        
+        .vip-badge i {
+            margin-right: 4px;
+        }
+
         /* Dark mode styles */
         .dark {
             --tw-bg-opacity: 1;
@@ -1063,6 +1081,7 @@
 
         // Check login state from localStorage
         const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+        const isVIP = localStorage.getItem('isVIP') === 'true';
         
         if (isLoggedIn) {
             guestMenu.classList.add('hidden');
@@ -1071,6 +1090,11 @@
             const userAvatar = localStorage.getItem('userAvatar');
             if (userAvatar) {
                 document.querySelector('#userMenuButton img').src = userAvatar;
+            }
+            // Show/hide VIP badge
+            const vipBadge = document.querySelector('.vip-badge');
+            if (vipBadge) {
+                vipBadge.style.display = isVIP ? 'inline-flex' : 'none';
             }
         }
 
@@ -1086,13 +1110,20 @@
         });
 
         // Sample login function (would be called after successful login)
-        function loginUser() {
+        function loginUser(isVIP = true) {
             localStorage.setItem('isLoggedIn', 'true');
             localStorage.setItem('userAvatar', 'https://i.postimg.cc/TwSZBJrZ/CMS-user-logo.png');
+            localStorage.setItem('isVIP', isVIP ? 'true' : 'false');
             guestMenu.classList.add('hidden');
             userMenu.classList.remove('hidden');
             document.querySelector('#userMenuButton img').src = 'https://i.postimg.cc/TwSZBJrZ/CMS-user-logo.png';
             userMenuDropdown.classList.add('hidden');
+            
+            // Update VIP badge visibility
+            const vipBadge = document.querySelector('.vip-badge');
+            if (vipBadge) {
+                vipBadge.style.display = isVIP ? 'inline-flex' : 'none';
+            }
         }
 
         // Logout function
