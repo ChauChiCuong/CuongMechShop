@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="vn">
+<html lang="vn" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -389,48 +389,25 @@
                 </nav>
                 
                 <div class="flex items-center space-x-4">
+                    <!-- User Profile (hidden by default) -->
+                    <div id="userProfile" class="hidden items-center space-x-2 relative">
+                        <div class="w-10 h-10 rounded-full bg-gray-200 overflow-hidden cursor-pointer" id="profileDropdownBtn">
+                            <img src="https://i.imgur.com/JqVYJtT.png" alt="Guest Avatar" class="w-full h-full object-cover">
+                        </div>
+                        <span id="usernameDisplay" class="font-medium"></span>
+                        
+                        <!-- Dropdown Menu -->
+                        <div id="profileDropdown" class="hidden absolute right-0 top-full mt-2 w-48 bg-white rounded-md shadow-lg z-50">
+                            <div class="py-1">
+                                <a href="#" id="accountInfoBtn" class="block px-4 py-2 text-sm text-gray-900 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-700">Thông tin của bạn</a>
+                                <a href="#" id="logoutBtn" class="block px-4 py-2 text-sm text-gray-900 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-700">Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <button id="mobileMenuButton" class="md:hidden text-gray-600 dark:text-gray-300">
                         <i class="fas fa-bars text-2xl"></i>
                     </button>
-                    <div class="relative">
-                        <button id="darkModeToggle" class="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
-                            <i class="fas fa-moon" id="darkModeIcon"></i>
-                        </button>
-                        <div id="darkModeDropdown" class="hidden absolute right-0 mt-2 w-32 bg-white dark:bg-gray-800 rounded-md shadow-lg z-10">
-                            <button data-mode="light" class="w-full text-left px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center">
-                                <i class="fas fa-sun mr-2"></i> Light
-                            </button>
-                            <button data-mode="dark" class="w-full text-left px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center">
-                                <i class="fas fa-moon mr-2"></i> Dark
-                            </button>
-                            <button data-mode="auto" class="w-full text-left px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 flex items-center">
-                                <i class="fas fa-adjust mr-2"></i> Auto
-                            </button>
-                        </div>
-                    </div>
-                    <div class="relative">
-                        <div class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center overflow-hidden cursor-pointer" id="userMenuButton">
-                            <img src="https://i.postimg.cc/TwSZBJrZ/CMS-user-logo.png" alt="Guest" class="w-full h-full object-cover">
-                        </div>
-                        <div id="userMenuDropdown" class="hidden absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-md shadow-lg z-10">
-                            <!-- Guest state (default) -->
-                            <div id="guestMenu">
-                                <a href="https://chauchicuong.github.io/CuongMechShop-signin/" class="block px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Đăng nhập</a>
-                                <a href="https://chauchicuong.github.io/CuongMechShop-createaccount/" class="block px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Đăng ký</a>
-                            </div>
-                            
-                            <!-- Logged-in state (hidden by default) -->
-                            <div id="userMenu" class="hidden">
-                                <div class="px-4 py-2 border-b border-gray-200 dark:border-gray-700">
-                                    <div class="font-medium text-gray-900 dark:text-white">Player123</div>
-                                    <div class="text-xs text-gray-500 dark:text-gray-400">VIP: 500 ngày</div>
-                                </div>
-                                <a href="#" class="block px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Tài khoản của tôi</a>
-                                <a href="#" class="block px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Lịch sử giao dịch</a>
-                                <a href="#" id="logoutBtn" class="block px-4 py-2 text-red-600 hover:bg-gray-100 dark:hover:bg-gray-700">Đăng xuất</a>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 
             </div>
@@ -459,6 +436,32 @@
                     <li><a href="#contact" class="block py-2 text-gray-600 dark:text-gray-300 hover:text-cyan-500 font-medium text-xl">Contact</a></li>
                 </ul>
             </nav>
+            
+            <div id="mobileAuthButtons" class="hidden mt-8 flex flex-col space-y-4">
+                <button id="mobileLoginBtn" class="px-4 py-2 rounded-md bg-cyan-500 hover:bg-cyan-600 text-white text-xl">
+                    Đăng nhập
+                </button>
+                <button id="mobileRegisterBtn" class="px-4 py-2 rounded-md border border-cyan-500 text-cyan-500 hover:bg-cyan-50 text-xl">
+                    Đăng ký
+                </button>
+            </div>
+            
+            <div id="mobileUserProfile" class="mt-8 flex items-center space-x-4 relative">
+                <div class="w-12 h-12 rounded-full bg-gray-200 overflow-hidden cursor-pointer" id="mobileProfileDropdownBtn">
+                    <img src="https://i.imgur.com/JqVYJtT.png" alt="Guest Avatar" class="w-full h-full object-cover">
+                </div>
+                <div>
+                    <div id="mobileUsernameDisplay" class="font-medium"></div>
+                </div>
+                
+                <!-- Mobile Dropdown Menu -->
+                <div id="mobileProfileDropdown" class="hidden absolute left-0 top-full mt-2 w-48 bg-white rounded-md shadow-lg z-50">
+                    <div class="py-1">
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-900 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-700">Thông tin của bạn</a>
+                        <a href="#" id="mobileLogoutBtn" class="block px-4 py-2 text-sm text-gray-900 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-700">Logout</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -480,10 +483,13 @@
                         Menu Shop
                     </a>
                 </div>
-                <div class="mt-4">
-                    <a href="https://chauchicuong.github.io/CuongMechShop-createaccount/" class="border-2 border-cyan-500 text-cyan-500 hover:bg-cyan-500 hover:text-white font-bold py-3 px-6 rounded-full shadow transition duration-300 text-center inline-block">
-                        Tạo tài khoản
-                    </a>
+                <div class="flex space-x-4 mt-4">
+                    <button id="heroLoginBtn" class="px-4 py-2 rounded-md bg-cyan-500 hover:bg-cyan-600 text-white">
+                        Đăng nhập
+                    </button>
+                    <button id="heroRegisterBtn" class="px-4 py-2 rounded-md border border-cyan-500 text-cyan-500 hover:bg-cyan-50">
+                        Đăng ký
+                    </button>
                 </div>
                 
             </div>
@@ -945,6 +951,176 @@
         </div>
     </div>
 
+
+    <!-- Account Info Modal -->
+    <div id="accountInfoModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-6 w-full max-w-md mx-4 md:mx-auto">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold">Thông tin tài khoản</h3>
+                <button id="closeAccountInfoModal" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="space-y-4">
+                <div class="flex items-center space-x-4 mb-4">
+                    <div class="w-16 h-16 rounded-full bg-gray-200 overflow-hidden">
+                        <img src="https://i.imgur.com/JqVYJtT.png" alt="Guest Avatar" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 dark:text-gray-300 mb-1">Tên đăng nhập</label>
+                        <div class="bg-gray-100 dark:bg-gray-700 p-2 rounded-md" id="accountInfoUsername"></div>
+                        <div class="mt-1 text-sm" id="vipStatus">
+                            <span class="text-gray-600 dark:text-gray-300">VIP: </span>
+                            <span class="text-orange-500 font-medium">Chưa kích hoạt</span>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-gray-700 dark:text-gray-300 mb-1">Email Google Play</label>
+                    <div class="bg-gray-100 dark:bg-gray-700 p-2 rounded-md" id="accountInfoEmail"></div>
+                </div>
+                <div>
+                    <label class="block text-gray-700 dark:text-gray-300 mb-1">Số điện thoại Zalo</label>
+                    <div class="bg-gray-100 dark:bg-gray-700 p-2 rounded-md" id="accountInfoPhone"></div>
+                </div>
+                <div>
+                    <label class="block text-gray-700 dark:text-gray-300 mb-1">Ngày đăng ký</label>
+                    <div class="bg-gray-100 dark:bg-gray-700 p-2 rounded-md" id="accountInfoDate"></div>
+                </div>
+                <div>
+                    <label class="block text-gray-700 dark:text-gray-300 mb-1">Rank hiện tại</label>
+                    <div class="bg-gray-100 dark:bg-gray-700 p-2 rounded-md" id="accountInfoRank"></div>
+                </div>
+                <div>
+                    <label class="block text-gray-700 dark:text-gray-300 mb-1">Cấp độ</label>
+                    <div class="bg-gray-100 dark:bg-gray-700 p-2 rounded-md" id="accountInfoLevel"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-6 w-full max-w-xl mx-4 md:mx-auto">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold">Đăng nhập</h3>
+                <button id="closeLoginModal" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="loginForm">
+                <div class="mb-4">
+                    <label class="block text-gray-700 dark:text-gray-300 mb-2">Tên đăng nhập</label>
+                    <input type="text" id="loginUsername" class="w-full px-3 py-2 border-2 border-orange-500 bg-gray-100 font-bold text-gray-900 rounded-md" required>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 dark:text-gray-300 mb-2">Mật khẩu</label>
+                    <input type="password" id="loginPassword" class="w-full px-3 py-2 border-2 border-orange-500 bg-gray-100 font-bold text-gray-900 rounded-md" required>
+                </div>
+                <button type="submit" class="w-full bg-cyan-500 hover:bg-cyan-600 text-white py-2 rounded-md">
+                    Đăng nhập
+                </button>
+                <div id="loginError" class="text-red-500 text-sm mt-2 hidden"></div>
+                <div class="text-center text-sm mt-3">
+                    <div class="mb-2">
+                        <a href="#" id="forgotPasswordLink" class="text-orange-500 hover:underline">
+                            Bạn quên mật khẩu ư?
+                        </a>
+                    </div>
+                    Bạn chưa có tài khoản? 
+                    <a href="#" onclick="document.getElementById('closeLoginModal').click(); document.getElementById('registerBtn').click(); return false;" class="text-orange-500 hover:underline">
+                        Đăng ký tại đây
+                    </a>
+                </div>
+
+                <!-- Admin Login Section -->
+                <div id="adminLoginSection" class="hidden mt-4 p-4 border-t">
+                    <h3 class="text-lg font-medium mb-2">Đăng nhập Admin</h3>
+                    <input type="password" id="adminPassword" placeholder="Mật khẩu admin" class="w-full px-3 py-2 border rounded mb-2">
+                    <button id="adminLoginBtn" class="w-full bg-gray-800 text-white py-2 rounded">Đăng nhập</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Forgot Password Modal -->
+    <div id="forgotPasswordModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-6 w-full max-w-sm mx-auto">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold">Hỗ trợ qua Zalo</h3>
+                <button id="closeForgotPasswordModal" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="text-center mb-4">
+                <p class="text-gray-700 dark:text-gray-300 mb-4">Quét mã QR Zalo để được hỗ trợ khôi phục mật khẩu</p>
+                <img src="https://i.postimg.cc/2jLDwRzT/My-zalo-QR.jpg" 
+                     alt="Zalo QR Code" 
+                     class="w-full max-w-xs mx-auto rounded-lg shadow-md">
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="registerModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-6 w-full max-w-sm mx-auto my-4">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold">Đăng ký</h3>
+                <button id="closeRegisterModal" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="registerForm" class="space-y-3">
+                <div>
+                    <label class="block text-gray-700 dark:text-gray-300 mb-1 text-sm">Tên đăng nhập</label>
+                    <input type="text" id="registerUsername" class="w-full px-3 py-2 border-2 border-orange-500 bg-gray-100 font-bold text-gray-900 rounded-md text-sm" required>
+                </div>
+                <div>
+                    <label class="block text-gray-700 dark:text-gray-300 mb-1 text-sm">Email Google Play</label>
+                    <input type="email" id="registerEmail" class="w-full px-3 py-2 border-2 border-orange-500 bg-gray-100 font-bold text-gray-900 rounded-md text-sm" 
+                           pattern="[a-zA-Z0-9._%+-]+@gmail\.com$" title="Vui lòng sử dụng địa chỉ Gmail (@gmail.com)" required>
+                </div>
+                <div>
+                    <label class="block text-gray-700 dark:text-gray-300 mb-1 text-sm">Số điện thoại Zalo</label>
+                    <input type="tel" id="registerPhone" class="w-full px-3 py-2 border-2 border-orange-500 bg-gray-100 font-bold text-gray-900 rounded-md text-sm" 
+                           pattern="\+84[0-9]{9,15}" title="Vui lòng nhập số điện thoại Zalo bắt đầu bằng +84" placeholder="+84..." required>
+                </div>
+                <div>
+                    <label class="block text-gray-700 dark:text-gray-300 mb-1 text-sm">Mật khẩu</label>
+                    <input type="password" id="registerPassword" class="w-full px-3 py-2 border-2 border-orange-500 bg-gray-100 font-bold text-gray-900 rounded-md text-sm" required>
+                </div>
+                <div>
+                    <label class="block text-gray-700 dark:text-gray-300 mb-1 text-sm">Rank hiện tại</label>
+                    <select id="registerRank" class="w-full px-3 py-2 border-2 border-orange-500 bg-gray-100 font-bold text-gray-900 rounded-md text-sm" required>
+                        <option value="" disabled selected>Chọn rank</option>
+                        <option value="Sắt">Sắt</option>
+                        <option value="Đồng">Đồng</option>
+                        <option value="Vàng">Vàng</option>
+                        <option value="Bạch Kim">Bạch Kim</option>
+                        <option value="Ascendant">Ascendant</option>
+                        <option value="Ưu tú">Ưu tú</option>
+                        <option value="Huyền thoại">Huyền thoại</option>
+                        <option value="Nhà Vô Địch">Nhà Vô Địch</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-gray-700 dark:text-gray-300 mb-1 text-sm">Lv. hiện tại</label>
+                    <input type="number" class="w-full px-3 py-2 border-2 border-orange-500 bg-gray-100 font-bold text-gray-900 rounded-md text-sm" 
+                           placeholder="VD: 30, 45, 60..." required>
+                </div>
+                <button type="submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white py-2 rounded-md text-sm">
+                    Đăng ký
+                </button>
+                <div class="text-center text-sm mt-3">
+                    Bạn đã có tài khoản? 
+                    <a href="#" onclick="document.getElementById('closeRegisterModal').click(); document.getElementById('loginBtn').click(); return false;" class="text-cyan-500 hover:underline">
+                        Đăng nhập tại đây
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <!-- Scroll to Top Button -->
     <button id="scrollToTopBtn" class="fixed bottom-8 right-8 w-12 h-12 rounded-full bg-cyan-500 text-white shadow-lg transition-all duration-300 opacity-0 invisible flex items-center justify-center hover:bg-cyan-600">
         <i class="fas fa-arrow-up text-xl"></i>
@@ -957,6 +1133,7 @@
                 <div class="mb-4 md:mb-0">
                     <p>&copy; 2022 - 2025 <span class="font-bold text-white">Cuong</span> <span class="font-bold text-cyan-500">Mech</span> <span class="font-bold text-orange-500">Shop</span>. Dự án tốt nghiệp của SE192582 - FPTU HCM.</p>
                     <p class="text-sm mt-1">Cập nhật lần cuối: <span id="last-updated"></span></p>
+                    <p class="text-xs mt-1" id="device-info"></p>
                 </div>
                 <div class="flex flex-col items-center md:items-end">
                     <div class="flex space-x-6 mb-2">
@@ -1072,81 +1249,98 @@
             }
         }
 
-        // User menu functionality
-        const userMenuButton = document.getElementById('userMenuButton');
-        const userMenuDropdown = document.getElementById('userMenuDropdown');
-        const guestMenu = document.getElementById('guestMenu');
-        const userMenu = document.getElementById('userMenu');
-        const logoutBtn = document.getElementById('logoutBtn');
-
-        // Check login state from localStorage
-        const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-        const isVIP = localStorage.getItem('isVIP') === 'true';
-        
-        if (isLoggedIn) {
-            guestMenu.classList.add('hidden');
-            userMenu.classList.remove('hidden');
-            // Update user avatar if available
-            const userAvatar = localStorage.getItem('userAvatar');
-            if (userAvatar) {
-                document.querySelector('#userMenuButton img').src = userAvatar;
-            }
-            // Show/hide VIP badge
-            const vipBadge = document.querySelector('.vip-badge');
-            if (vipBadge) {
-                vipBadge.style.display = isVIP ? 'inline-flex' : 'none';
-            }
-        }
-
-        userMenuButton.addEventListener('click', () => {
-            userMenuDropdown.classList.toggle('hidden');
-        });
-
-        // Close user menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!userMenuButton.contains(e.target) && !userMenuDropdown.contains(e.target)) {
-                userMenuDropdown.classList.add('hidden');
-            }
-        });
-
-        // Sample login function (would be called after successful login)
-        function loginUser(isVIP = true) {
-            localStorage.setItem('isLoggedIn', 'true');
-            localStorage.setItem('userAvatar', 'https://i.postimg.cc/TwSZBJrZ/CMS-user-logo.png');
-            localStorage.setItem('isVIP', isVIP ? 'true' : 'false');
-            guestMenu.classList.add('hidden');
-            userMenu.classList.remove('hidden');
-            document.querySelector('#userMenuButton img').src = 'https://i.postimg.cc/TwSZBJrZ/CMS-user-logo.png';
-            userMenuDropdown.classList.add('hidden');
-            
-            // Update VIP badge visibility
-            const vipBadge = document.querySelector('.vip-badge');
-            if (vipBadge) {
-                vipBadge.style.display = isVIP ? 'inline-flex' : 'none';
-            }
-        }
-
-        // Logout function
-        logoutBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            localStorage.removeItem('isLoggedIn');
-            localStorage.removeItem('userAvatar');
-            guestMenu.classList.remove('hidden');
-            userMenu.classList.add('hidden');
-            document.querySelector('#userMenuButton img').src = 'https://i.postimg.cc/TwSZBJrZ/CMS-user-logo.png';
-            userMenuDropdown.classList.add('hidden');
-        });
-
-        // For demo purposes - simulate login with sample account
-        document.addEventListener('DOMContentLoaded', () => {
-            // Uncomment this line to auto-login the sample account for demo
-            // loginUser();
-        });
-
         // Mobile menu functionality
         const mobileMenuButton = document.getElementById('mobileMenuButton');
         const mobileMenuClose = document.getElementById('mobileMenuClose');
         const mobileMenu = document.getElementById('mobileMenu');
+        const mobileLoginBtn = document.getElementById('mobileLoginBtn');
+        const mobileRegisterBtn = document.getElementById('mobileRegisterBtn');
+        const loginBtn = document.getElementById('loginBtn');
+        const registerBtn = document.getElementById('registerBtn');
+        const loginModal = document.getElementById('loginModal');
+        const registerModal = document.getElementById('registerModal');
+        const closeLoginModal = document.getElementById('closeLoginModal');
+        const closeRegisterModal = document.getElementById('closeRegisterModal');
+
+        // Account info modal
+        const accountInfoModal = document.getElementById('accountInfoModal');
+        const closeAccountInfoModal = document.getElementById('closeAccountInfoModal');
+        const accountInfoBtn = document.getElementById('accountInfoBtn');
+        const mobileAccountInfoBtn = document.getElementById('mobileAccountInfoBtn');
+
+        // Show account info
+        function showAccountInfo() {
+            const username = localStorage.getItem('username') || 'Khách';
+            const email = localStorage.getItem('email') || 'Chưa cập nhật';
+            const phone = localStorage.getItem('phone') || 'Chưa cập nhật';
+            const registerDate = localStorage.getItem('registerDate') || new Date().toLocaleDateString('vi-VN');
+            const rank = localStorage.getItem('rank') || 'Chưa xác định';
+            const level = localStorage.getItem('level') || '1';
+            const isVip = localStorage.getItem('isVip') === 'true';
+            
+            document.getElementById('accountInfoEmail').textContent = email;
+            document.getElementById('accountInfoPhone').textContent = phone;
+            
+            // Update VIP status display
+            const vipStatusElement = document.getElementById('vipStatus');
+            if (isVip) {
+                vipStatusElement.innerHTML = `
+                    <span class="text-gray-600 dark:text-gray-300">VIP: </span>
+                    <span class="text-orange-500 font-medium">Đã kích hoạt</span>
+                    <span class="vip-badge ml-2 text-xs">
+                        <i class="fas fa-crown"></i> VIP
+                    </span>
+                `;
+            }
+            
+            document.getElementById('accountInfoUsername').textContent = username;
+            document.getElementById('accountInfoDate').textContent = registerDate;
+            document.getElementById('accountInfoRank').textContent = rank;
+            document.getElementById('accountInfoLevel').textContent = level;
+            
+            toggleModal(accountInfoModal);
+            
+            // Close dropdowns
+            if (profileDropdown) profileDropdown.classList.add('hidden');
+            if (mobileProfileDropdown) mobileProfileDropdown.classList.add('hidden');
+        }
+
+        // Toggle modals
+        const toggleModal = (modal) => {
+            modal.classList.toggle('hidden');
+            document.body.style.overflow = modal.classList.contains('hidden') ? 'auto' : 'hidden';
+        };
+
+        // Forgot password modal
+        const forgotPasswordLink = document.getElementById('forgotPasswordLink');
+        const forgotPasswordModal = document.getElementById('forgotPasswordModal');
+        const closeForgotPasswordModal = document.getElementById('closeForgotPasswordModal');
+
+        forgotPasswordLink?.addEventListener('click', (e) => {
+            e.preventDefault();
+            toggleModal(loginModal);
+            toggleModal(forgotPasswordModal);
+        });
+
+        closeForgotPasswordModal?.addEventListener('click', () => toggleModal(forgotPasswordModal));
+
+        // Login/Register button handlers
+        [loginBtn, mobileLoginBtn, document.getElementById('heroLoginBtn')].forEach(btn => {
+            btn?.addEventListener('click', () => {
+                toggleModal(loginModal);
+                // Hide mobile menu if visible
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenuClose.click();
+                }
+            });
+        });
+
+        [registerBtn, mobileRegisterBtn, document.getElementById('heroRegisterBtn')].forEach(btn => {
+            btn?.addEventListener('click', () => toggleModal(registerModal));
+        });
+
+        closeLoginModal.addEventListener('click', () => toggleModal(loginModal));
+        closeRegisterModal.addEventListener('click', () => toggleModal(registerModal));
 
         mobileMenuButton.addEventListener('click', () => {
             mobileMenu.classList.remove('hidden', 'translate-x-full');
@@ -1161,6 +1355,101 @@
                 document.body.style.overflow = 'auto';
             }, 300);
         });
+
+        // Mobile logout handler
+        document.getElementById('mobileLogoutBtn')?.addEventListener('click', function(e) {
+            e.preventDefault();
+            localStorage.removeItem('isLoggedIn');
+            localStorage.removeItem('username');
+            
+            // Show login/register buttons
+            document.querySelectorAll('#authButtons, #mobileAuthButtons, #loginBtn, #registerBtn, #mobileLoginBtn, #mobileRegisterBtn').forEach(el => {
+                el.classList.remove('hidden');
+            });
+            
+            // Hide profile sections
+            document.getElementById('userProfile').classList.add('hidden');
+            document.getElementById('mobileUserProfile').classList.add('hidden');
+            
+            // Close dropdown
+            if (mobileProfileDropdown) mobileProfileDropdown.classList.add('hidden');
+            
+            // Close mobile menu
+            mobileMenuClose.click();
+        });
+
+        // Profile dropdown functionality
+        const profileDropdownBtn = document.getElementById('profileDropdownBtn');
+        const profileDropdown = document.getElementById('profileDropdown');
+        const mobileProfileDropdownBtn = document.getElementById('mobileProfileDropdownBtn');
+        const mobileProfileDropdown = document.getElementById('mobileProfileDropdown');
+
+        // Account info button handlers
+        accountInfoBtn?.addEventListener('click', (e) => {
+            e.preventDefault();
+            showAccountInfo();
+        });
+
+        mobileAccountInfoBtn?.addEventListener('click', (e) => {
+            e.preventDefault();
+            showAccountInfo();
+            // Close mobile menu
+            mobileMenuClose.click();
+        });
+
+        closeAccountInfoModal?.addEventListener('click', () => toggleModal(accountInfoModal));
+
+        // Toggle dropdowns
+        profileDropdownBtn?.addEventListener('click', (e) => {
+            e.stopPropagation();
+            profileDropdown.classList.toggle('hidden');
+        });
+
+        mobileProfileDropdownBtn?.addEventListener('click', (e) => {
+            e.stopPropagation();
+            mobileProfileDropdown.classList.toggle('hidden');
+        });
+
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', () => {
+            profileDropdown?.classList.add('hidden');
+            mobileProfileDropdown?.classList.add('hidden');
+        });
+
+        // Logout functionality
+        document.getElementById('logoutBtn')?.addEventListener('click', function(e) {
+            e.preventDefault();
+            localStorage.removeItem('isLoggedIn');
+            localStorage.removeItem('username');
+            
+            // Show login/register buttons
+            document.querySelectorAll('#heroLoginBtn, #heroRegisterBtn, #mobileLoginBtn, #mobileRegisterBtn').forEach(el => {
+                el.classList.remove('hidden');
+            });
+            
+            // Hide profile sections
+            document.getElementById('userProfile').classList.add('hidden');
+            document.getElementById('mobileUserProfile').classList.add('hidden');
+            
+            // Close dropdowns
+            if (profileDropdown) profileDropdown.classList.add('hidden');
+            if (mobileProfileDropdown) mobileProfileDropdown.classList.add('hidden');
+            
+            // Close mobile menu if open
+            if (!mobileMenu.classList.contains('hidden')) {
+                mobileMenuClose.click();
+            }
+        });
+
+        // Check mobile login state on page load
+        if (localStorage.getItem('isLoggedIn') === 'true') {
+            document.getElementById('mobileAuthButtons').classList.add('hidden');
+            document.getElementById('mobileUserProfile').classList.remove('hidden');
+            document.getElementById('mobileUsernameDisplay').textContent = localStorage.getItem('username');
+        } else {
+            document.getElementById('mobileAuthButtons').classList.remove('hidden');
+            document.getElementById('mobileUserProfile').classList.add('hidden');
+        }
 
         // Close menu when clicking on links
         mobileMenu.querySelectorAll('a').forEach(link => {
@@ -1223,6 +1512,35 @@
             minute: '2-digit'
         });
 
+        // Set device information
+        const deviceInfo = document.getElementById('device-info');
+        const userAgent = navigator.userAgent;
+        const platform = navigator.platform;
+        const screenWidth = window.screen.width;
+        const screenHeight = window.screen.height;
+        
+        // Generate a simple device ID hash
+        const deviceIdHash = () => {
+            const str = platform + userAgent + screenWidth + screenHeight;
+            let hash = 0;
+            for (let i = 0; i < str.length; i++) {
+                const char = str.charCodeAt(i);
+                hash = ((hash << 5) - hash) + char;
+                hash = hash & hash; // Convert to 32bit integer
+            }
+            return Math.abs(hash).toString(16).substring(0, 8);
+        };
+
+        // Get IP (note: this requires a third-party service)
+        fetch('https://api.ipify.org?format=json')
+            .then(response => response.json())
+            .then(data => {
+                deviceInfo.textContent = `Thiết bị: ${platform} | ID: ${deviceIdHash()} | IP: ${data.ip}`;
+            })
+            .catch(() => {
+                deviceInfo.textContent = `Thiết bị: ${platform} | ID: ${deviceIdHash()} | IP: Không xác định`;
+            });
+
         // Update time every second
         updateTime();
         setInterval(updateTime, 1000);
@@ -1247,67 +1565,119 @@
             });
         });
 
-        // Dark mode functionality
-        const darkModeToggle = document.getElementById('darkModeToggle');
-        const darkModeDropdown = document.getElementById('darkModeDropdown');
-        const darkModeIcon = document.getElementById('darkModeIcon');
-        
-        // Check for saved theme preference or use dark as default
-        const savedTheme = localStorage.getItem('theme') || 'dark';
-        const systemPrefersDark = true; // Force dark mode
-        
-        // Apply theme with animation
-        function applyTheme(theme) {
-            const html = document.documentElement;
+        // Admin login functionality
+        document.getElementById('adminLoginBtn').addEventListener('click', function() {
+            const password = document.getElementById('adminPassword').value;
             
-            // Add transition class
-            html.classList.add('theme-transition');
-            
-            if (theme === 'dark' || (theme === 'auto' && systemPrefersDark)) {
-                html.classList.add('dark');
-                darkModeIcon.className = 'fas fa-moon';
+            // Check admin password (replace 'your_admin_password' with real password)
+            if (password === 'your_admin_password') {
+                localStorage.setItem('adminLoggedIn', 'true');
+                window.location.href = 'CuongMechShop-Admin.html';
             } else {
-                html.classList.remove('dark');
-                darkModeIcon.className = 'fas fa-sun';
+                alert('Mật khẩu admin không đúng');
+            }
+        });
+
+        // Show admin login section for admin devices
+        if (isAdminDevice()) {
+            document.getElementById('adminLoginSection').classList.remove('hidden');
+        }
+
+        function isAdminDevice() {
+            // Add your admin device detection logic here
+            // Could check IP, user agent, or manually set
+            return false; // Default hidden, set true for admin devices
+        }
+
+        // Handle login form submission
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('loginUsername').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            // Simple validation
+            if (!username || !password) {
+                document.getElementById('loginError').textContent = 'Vui lòng nhập đầy đủ thông tin';
+                document.getElementById('loginError').classList.remove('hidden');
+                return;
             }
             
-            // Remove transition class after animation completes
+            // Simulate successful login
             setTimeout(() => {
-                html.classList.remove('theme-transition');
+                // Close modal
+                toggleModal(loginModal);
+                
+                // Update UI to show logged in state
+                document.querySelectorAll('#heroLoginBtn, #heroRegisterBtn, #mobileLoginBtn, #mobileRegisterBtn').forEach(el => {
+                    el.classList.add('hidden');
+                });
+                document.getElementById('userProfile').classList.remove('hidden');
+                document.getElementById('mobileUserProfile').classList.remove('hidden');
+                document.getElementById('usernameDisplay').textContent = username;
+                document.getElementById('mobileUsernameDisplay').textContent = username;
+                
+                // Store login state in localStorage
+                localStorage.setItem('isLoggedIn', 'true');
+                localStorage.setItem('username', username);
             }, 500);
-        }
-        
-        // Set initial theme to dark
-        applyTheme('dark');
-        
-        // Toggle dropdown
-        darkModeToggle.addEventListener('click', () => {
-            darkModeDropdown.classList.toggle('hidden');
         });
-        
-        // Close dropdown when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!darkModeToggle.contains(e.target) && !darkModeDropdown.contains(e.target)) {
-                darkModeDropdown.classList.add('hidden');
+
+        // Handle register form submission
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('registerUsername').value;
+            const email = document.getElementById('registerEmail').value;
+            const phone = document.getElementById('registerPhone').value;
+            const password = document.getElementById('registerPassword').value;
+            const rank = document.getElementById('registerRank').value;
+            
+            // Simple validation
+            if (!username || !email || !phone || !password || !rank) {
+                alert('Vui lòng nhập đầy đủ thông tin');
+                return;
             }
+            
+            // Save account info
+            localStorage.setItem('registerDate', new Date().toLocaleDateString('vi-VN'));
+            localStorage.setItem('email', email);
+            localStorage.setItem('phone', phone);
+            localStorage.setItem('rank', rank);
+            localStorage.setItem('level', document.querySelector('#registerForm input[type="number"]').value);
+            
+            // Simulate successful registration
+            setTimeout(() => {
+                // Close modal
+                toggleModal(registerModal);
+                
+                // Show success message
+                alert(`Đăng ký tài khoản ${username} thành công!`);
+                
+                // Auto-login after registration
+                document.getElementById('loginUsername').value = username;
+                document.getElementById('loginPassword').value = password;
+                document.getElementById('loginForm').dispatchEvent(new Event('submit'));
+            }, 500);
         });
-        
-        // Handle theme selection
-        document.querySelectorAll('#darkModeDropdown button').forEach(button => {
-            button.addEventListener('click', () => {
-                const theme = button.dataset.mode;
-                localStorage.setItem('theme', theme);
-                applyTheme(theme);
-                darkModeDropdown.classList.add('hidden');
+
+        // Check login state on page load
+        if (localStorage.getItem('isLoggedIn') === 'true') {
+            document.querySelectorAll('#heroLoginBtn, #heroRegisterBtn, #mobileLoginBtn, #mobileRegisterBtn').forEach(el => {
+                el.classList.add('hidden');
             });
-        });
-        
-        // Watch for system theme changes
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-            if (localStorage.getItem('theme') === 'auto') {
-                applyTheme('auto');
+            document.getElementById('userProfile').classList.remove('hidden');
+            document.getElementById('mobileUserProfile').classList.remove('hidden');
+            document.getElementById('usernameDisplay').textContent = localStorage.getItem('username');
+            document.getElementById('mobileUsernameDisplay').textContent = localStorage.getItem('username');
+            
+            // Ensure mobile menu is also updated if it's open
+            if (!mobileMenu.classList.contains('hidden')) {
+                document.getElementById('mobileAuthButtons').classList.add('hidden');
+                document.getElementById('mobileUserProfile').classList.remove('hidden');
             }
-        });
+        }
+
+        // Force dark mode by default
+        document.documentElement.classList.add('dark');
     </script>
 </body>
 </html>
