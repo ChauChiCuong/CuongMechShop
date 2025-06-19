@@ -391,10 +391,15 @@
                 <div class="flex items-center space-x-4">
                     <!-- User Profile (hidden by default) -->
                     <div id="userProfile" class="hidden items-center space-x-2 relative">
-                        <div class="w-10 h-10 rounded-full bg-gray-200 overflow-hidden cursor-pointer" id="profileDropdownBtn">
-                            <img src="https://i.imgur.com/JqVYJtT.png" alt="Guest Avatar" class="w-full h-full object-cover">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 rounded-full bg-gray-200 overflow-hidden cursor-pointer" id="profileDropdownBtn">
+                                <img src="https://i.postimg.cc/TwSZBJrZ/CMS-user-logo.png" alt="Cuong Mech Shop User Logo" class="w-full h-full object-cover">
+                            </div>
+                            <span id="usernameDisplay" class="font-medium ml-2"></span>
+                            <span id="vipBadge" class="vip-badge hidden">
+                                <i class="fas fa-crown"></i> VIP
+                            </span>
                         </div>
-                        <span id="usernameDisplay" class="font-medium"></span>
                         
                         <!-- Dropdown Menu -->
                         <div id="profileDropdown" class="hidden absolute right-0 top-full mt-2 w-48 bg-white rounded-md shadow-lg z-50">
@@ -447,11 +452,14 @@
             </div>
             
             <div id="mobileUserProfile" class="mt-8 flex items-center space-x-4 relative">
-                <div class="w-12 h-12 rounded-full bg-gray-200 overflow-hidden cursor-pointer" id="mobileProfileDropdownBtn">
-                    <img src="https://i.imgur.com/JqVYJtT.png" alt="Guest Avatar" class="w-full h-full object-cover">
-                </div>
-                <div>
-                    <div id="mobileUsernameDisplay" class="font-medium"></div>
+                <div class="flex items-center">
+                    <div class="w-12 h-12 rounded-full bg-gray-200 overflow-hidden cursor-pointer" id="mobileProfileDropdownBtn">
+                        <img src="https://i.postimg.cc/TwSZBJrZ/CMS-user-logo.png" alt="Cuong Mech Shop User Logo" class="w-full h-full object-cover">
+                    </div>
+                    <div id="mobileUsernameDisplay" class="font-medium ml-2"></div>
+                    <span id="mobileVipBadge" class="vip-badge hidden">
+                        <i class="fas fa-crown"></i> VIP
+                    </span>
                 </div>
                 
                 <!-- Mobile Dropdown Menu -->
@@ -957,14 +965,19 @@
         <div class="bg-white dark:bg-gray-800 rounded-lg p-6 w-full max-w-md mx-4 md:mx-auto">
             <div class="flex justify-between items-center mb-4">
                 <h3 class="text-xl font-bold">Thông tin tài khoản</h3>
-                <button id="closeAccountInfoModal" class="text-gray-500 hover:text-gray-700">
-                    <i class="fas fa-times"></i>
-                </button>
+                <div class="flex space-x-2">
+                    <button id="editAccountInfoBtn" class="text-cyan-500 hover:text-cyan-700">
+                        <i class="fas fa-edit"></i> Chỉnh sửa
+                    </button>
+                    <button id="closeAccountInfoModal" class="text-gray-500 hover:text-gray-700">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
             </div>
             <div class="space-y-4">
                 <div class="flex items-center space-x-4 mb-4">
                     <div class="w-16 h-16 rounded-full bg-gray-200 overflow-hidden">
-                        <img src="https://i.imgur.com/JqVYJtT.png" alt="Guest Avatar" class="w-full h-full object-cover">
+                        <img src="https://i.postimg.cc/TwSZBJrZ/CMS-user-logo.png" alt="Guest Avatar" class="w-full h-full object-cover">
                     </div>
                     <div>
                         <label class="block text-gray-700 dark:text-gray-300 mb-1">Tên đăng nhập</label>
@@ -1011,7 +1024,7 @@
             <form id="loginForm">
                 <div class="mb-4">
                     <label class="block text-gray-700 dark:text-gray-300 mb-2">Tên đăng nhập</label>
-                    <input type="text" id="loginUsername" class="w-full px-3 py-2 border-2 border-orange-500 bg-gray-100 font-bold text-gray-900 rounded-md" required>
+                    <input type="text" id="loginUsername" class="w-full px-3 py-2 border-2 border-orange-500 bg-gray-100 font-bold text-gray-900 rounded-md" maxlength="6" pattern=".{1,6}" title="Tên đăng nhập tối đa 6 ký tự" required>
                 </div>
                 <div class="mb-4">
                     <label class="block text-gray-700 dark:text-gray-300 mb-2">Mật khẩu</label>
@@ -1031,13 +1044,6 @@
                     <a href="#" onclick="document.getElementById('closeLoginModal').click(); document.getElementById('registerBtn').click(); return false;" class="text-orange-500 hover:underline">
                         Đăng ký tại đây
                     </a>
-                </div>
-
-                <!-- Admin Login Section -->
-                <div id="adminLoginSection" class="hidden mt-4 p-4 border-t">
-                    <h3 class="text-lg font-medium mb-2">Đăng nhập Admin</h3>
-                    <input type="password" id="adminPassword" placeholder="Mật khẩu admin" class="w-full px-3 py-2 border rounded mb-2">
-                    <button id="adminLoginBtn" class="w-full bg-gray-800 text-white py-2 rounded">Đăng nhập</button>
                 </div>
             </form>
         </div>
@@ -1073,7 +1079,7 @@
             <form id="registerForm" class="space-y-3">
                 <div>
                     <label class="block text-gray-700 dark:text-gray-300 mb-1 text-sm">Tên đăng nhập</label>
-                    <input type="text" id="registerUsername" class="w-full px-3 py-2 border-2 border-orange-500 bg-gray-100 font-bold text-gray-900 rounded-md text-sm" required>
+                    <input type="text" id="registerUsername" class="w-full px-3 py-2 border-2 border-orange-500 bg-gray-100 font-bold text-gray-900 rounded-md text-sm" maxlength="6" pattern=".{1,6}" title="Tên đăng nhập tối đa 6 ký tự" required>
                 </div>
                 <div>
                     <label class="block text-gray-700 dark:text-gray-300 mb-1 text-sm">Email Google Play</label>
@@ -1565,30 +1571,6 @@
             });
         });
 
-        // Admin login functionality
-        document.getElementById('adminLoginBtn').addEventListener('click', function() {
-            const password = document.getElementById('adminPassword').value;
-            
-            // Check admin password (replace 'your_admin_password' with real password)
-            if (password === 'your_admin_password') {
-                localStorage.setItem('adminLoggedIn', 'true');
-                window.location.href = 'CuongMechShop-Admin.html';
-            } else {
-                alert('Mật khẩu admin không đúng');
-            }
-        });
-
-        // Show admin login section for admin devices
-        if (isAdminDevice()) {
-            document.getElementById('adminLoginSection').classList.remove('hidden');
-        }
-
-        function isAdminDevice() {
-            // Add your admin device detection logic here
-            // Could check IP, user agent, or manually set
-            return false; // Default hidden, set true for admin devices
-        }
-
         // Handle login form submission
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -1598,6 +1580,8 @@
             // Simple validation
             if (!username || !password) {
                 document.getElementById('loginError').textContent = 'Vui lòng nhập đầy đủ thông tin';
+            } else if (username.length > 6) {
+                document.getElementById('loginError').textContent = 'Tên đăng nhập tối đa 6 ký tự';
                 document.getElementById('loginError').classList.remove('hidden');
                 return;
             }
@@ -1615,6 +1599,13 @@
                 document.getElementById('mobileUserProfile').classList.remove('hidden');
                 document.getElementById('usernameDisplay').textContent = username;
                 document.getElementById('mobileUsernameDisplay').textContent = username;
+                
+                // Show VIP badge if account is VIP
+                const isVip = localStorage.getItem('isVip') === 'true';
+                if (isVip) {
+                    document.getElementById('vipBadge').classList.remove('hidden');
+                    document.getElementById('mobileVipBadge').classList.remove('hidden');
+                }
                 
                 // Store login state in localStorage
                 localStorage.setItem('isLoggedIn', 'true');
@@ -1634,6 +1625,9 @@
             // Simple validation
             if (!username || !email || !phone || !password || !rank) {
                 alert('Vui lòng nhập đầy đủ thông tin');
+                return;
+            } else if (username.length > 6) {
+                alert('Tên đăng nhập tối đa 6 ký tự');
                 return;
             }
             
@@ -1669,12 +1663,24 @@
             document.getElementById('usernameDisplay').textContent = localStorage.getItem('username');
             document.getElementById('mobileUsernameDisplay').textContent = localStorage.getItem('username');
             
+            // Show VIP badge if account is VIP
+            const isVip = localStorage.getItem('isVip') === 'true';
+            if (isVip) {
+                document.getElementById('vipBadge').classList.remove('hidden');
+                document.getElementById('mobileVipBadge').classList.remove('hidden');
+            }
+            
             // Ensure mobile menu is also updated if it's open
             if (!mobileMenu.classList.contains('hidden')) {
                 document.getElementById('mobileAuthButtons').classList.add('hidden');
                 document.getElementById('mobileUserProfile').classList.remove('hidden');
             }
         }
+
+        // Edit account info handler
+        document.getElementById('editAccountInfoBtn').addEventListener('click', function() {
+            alert('Tính năng này không được tự ý chỉnh sửa. Nếu bạn muốn chỉnh sửa thông tin, vui lòng liên hệ Zalo để được hỗ trợ.');
+        });
 
         // Force dark mode by default
         document.documentElement.classList.add('dark');
