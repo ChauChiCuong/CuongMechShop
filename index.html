@@ -1613,44 +1613,73 @@
             }, 500);
         });
 
-        // Handle register form submission
-        document.getElementById('registerForm').addEventListener('submit', function(e) {
+        // API Configuration
+        const API_URL = "https://script.google.com/macros/s/AKfycbyabtpDMvhFyCh3mtBkjmauasWmS-bjn09sthKUk8xUm8zWG_KItd9vRJn5f-0mkkhVUQ/exec";
+        const SECRET_KEY = "Cuonguuu1u2u3u@";
+
+        // Handle register form submission with API
+        document.getElementById('registerForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             const username = document.getElementById('registerUsername').value;
             const email = document.getElementById('registerEmail').value;
             const phone = document.getElementById('registerPhone').value;
             const password = document.getElementById('registerPassword').value;
             const rank = document.getElementById('registerRank').value;
+            const level = document.querySelector('#registerForm input[type="number"]').value;
             
-            // Simple validation
-            if (!username || !email || !phone || !password || !rank) {
+            // Validation
+            if (!username || !email || !phone || !password || !rank || !level) {
                 alert('Vui lòng nhập đầy đủ thông tin');
                 return;
             } else if (username.length > 6) {
                 alert('Tên đăng nhập tối đa 6 ký tự');
                 return;
             }
-            
-            // Save account info
-            localStorage.setItem('registerDate', new Date().toLocaleDateString('vi-VN'));
-            localStorage.setItem('email', email);
-            localStorage.setItem('phone', phone);
-            localStorage.setItem('rank', rank);
-            localStorage.setItem('level', document.querySelector('#registerForm input[type="number"]').value);
-            
-            // Simulate successful registration
-            setTimeout(() => {
-                // Close modal
-                toggleModal(registerModal);
+
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        action: "register",
+                        key: SECRET_KEY,
+                        username: username,
+                        email: email,
+                        phone: phone,
+                        rank: rank,
+                        level: level
+                    })
+                });
+
+                const result = await response.json();
                 
-                // Show success message
-                alert(`Đăng ký tài khoản ${username} thành công!`);
-                
-                // Auto-login after registration
-                document.getElementById('loginUsername').value = username;
-                document.getElementById('loginPassword').value = password;
-                document.getElementById('loginForm').dispatchEvent(new Event('submit'));
-            }, 500);
+                if (result.success) {
+                    // Save account info locally
+                    localStorage.setItem('registerDate', new Date().toLocaleDateString('vi-VN'));
+                    localStorage.setItem('email', email);
+                    localStorage.setItem('phone', phone);
+                    localStorage.setItem('rank', rank);
+                    localStorage.setItem('level', level);
+                    
+                    // Close modal
+                    toggleModal(registerModal);
+                    
+                    // Show success message
+                    alert(`Đăng ký tài khoản ${username} thành công!`);
+                    
+                    // Auto-login after registration
+                    document.getElementById('loginUsername').value = username;
+                    document.getElementById('loginPassword').value = password;
+                    document.getElementById('loginForm').dispatchEvent(new Event('submit'));
+                } else {
+                    alert("Lỗi đăng ký: " + result.message);
+                }
+            } catch (error) {
+                console.error("Lỗi API:", error);
+                alert("Có lỗi xảy ra khi kết nối đến server");
+            }
         });
 
         // Check login state on page load
