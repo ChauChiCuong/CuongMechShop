@@ -246,24 +246,6 @@
             transform: scale(1.05) rotate(5deg);
         }
 
-        /* VIP Badge */
-        .vip-badge {
-            background: linear-gradient(135deg, #ffd700 0%, #d4af37 50%, #ffd700 100%);
-            color: #000;
-            font-weight: bold;
-            padding: 2px 8px;
-            border-radius: 12px;
-            font-size: 12px;
-            display: inline-flex;
-            align-items: center;
-            margin-left: 8px;
-            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-        }
-        
-        .vip-badge i {
-            margin-right: 4px;
-        }
-
         /* Dark mode styles */
         .dark {
             --tw-bg-opacity: 1;
@@ -349,6 +331,23 @@
     </style>
 </head>
 <body>
+    <!-- Unsupported Browser Popup -->
+    <div id="unsupportedBrowserPopup" class="hidden fixed inset-0 bg-black bg-opacity-80 z-[9999] flex items-center justify-center">
+        <div class="bg-white dark:bg-gray-800 rounded-xl p-8 max-w-md mx-4">
+            <h3 class="text-2xl font-bold text-red-600 dark:text-red-500 mb-4">
+                <i class="fas fa-exclamation-triangle mr-2"></i>
+                Cảnh báo trình duyệt
+            </h3>
+            <p class="text-gray-700 dark:text-gray-300 mb-4">
+                Trình duyệt của bạn không được hỗ trợ. Vui lòng sử dụng Google Chrome, Firefox, Edge, Opera, Brave hoặc Safari để có trải nghiệm tốt nhất.
+            </p>
+            <button onclick="document.getElementById('unsupportedBrowserPopup').classList.add('hidden')" 
+                    class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded w-full">
+                Tôi đã hiểu
+            </button>
+        </div>
+    </div>
+
     <!-- Maintenance Popup -->
     <div class="maintenance-overlay">
         <div class="maintenance-popup">
@@ -389,27 +388,6 @@
                 </nav>
                 
                 <div class="flex items-center space-x-4">
-                    <!-- User Profile (hidden by default) -->
-                    <div id="userProfile" class="hidden items-center space-x-2 relative">
-                        <div class="flex items-center">
-                            <div class="w-10 h-10 rounded-full bg-gray-200 overflow-hidden cursor-pointer" id="profileDropdownBtn">
-                                <img src="https://i.postimg.cc/TwSZBJrZ/CMS-user-logo.png" alt="Cuong Mech Shop User Logo" class="w-full h-full object-cover">
-                            </div>
-                            <span id="usernameDisplay" class="font-medium ml-2"></span>
-                            <span id="vipBadge" class="vip-badge hidden">
-                                <i class="fas fa-crown"></i> VIP
-                            </span>
-                        </div>
-                        
-                        <!-- Dropdown Menu -->
-                        <div id="profileDropdown" class="hidden absolute right-0 top-full mt-2 w-48 bg-white rounded-md shadow-lg z-50">
-                            <div class="py-1">
-                                <a href="#" id="accountInfoBtn" class="block px-4 py-2 text-sm text-gray-900 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-700">Thông tin của bạn</a>
-                                <a href="#" id="logoutBtn" class="block px-4 py-2 text-sm text-gray-900 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-700">Logout</a>
-                            </div>
-                        </div>
-                    </div>
-                    
                     <button id="mobileMenuButton" class="md:hidden text-gray-600 dark:text-gray-300">
                         <i class="fas fa-bars text-2xl"></i>
                     </button>
@@ -442,34 +420,6 @@
                 </ul>
             </nav>
             
-            <div id="mobileAuthButtons" class="hidden mt-8 flex flex-col space-y-4">
-                <button id="mobileLoginBtn" class="px-4 py-2 rounded-md bg-cyan-500 hover:bg-cyan-600 text-white text-xl">
-                    Đăng nhập
-                </button>
-                <button id="mobileRegisterBtn" class="px-4 py-2 rounded-md border border-cyan-500 text-cyan-500 hover:bg-cyan-50 text-xl">
-                    Đăng ký
-                </button>
-            </div>
-            
-            <div id="mobileUserProfile" class="mt-8 flex items-center space-x-4 relative">
-                <div class="flex items-center">
-                    <div class="w-12 h-12 rounded-full bg-gray-200 overflow-hidden cursor-pointer" id="mobileProfileDropdownBtn">
-                        <img src="https://i.postimg.cc/TwSZBJrZ/CMS-user-logo.png" alt="Cuong Mech Shop User Logo" class="w-full h-full object-cover">
-                    </div>
-                    <div id="mobileUsernameDisplay" class="font-medium ml-2"></div>
-                    <span id="mobileVipBadge" class="vip-badge hidden">
-                        <i class="fas fa-crown"></i> VIP
-                    </span>
-                </div>
-                
-                <!-- Mobile Dropdown Menu -->
-                <div id="mobileProfileDropdown" class="hidden absolute left-0 top-full mt-2 w-48 bg-white rounded-md shadow-lg z-50">
-                    <div class="py-1">
-                        <a href="#" class="block px-4 py-2 text-sm text-gray-900 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-700">Thông tin của bạn</a>
-                        <a href="#" id="mobileLogoutBtn" class="block px-4 py-2 text-sm text-gray-900 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-700">Logout</a>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 
@@ -491,15 +441,6 @@
                         Menu Shop
                     </a>
                 </div>
-                <div class="flex space-x-4 mt-4">
-                    <button id="heroLoginBtn" class="px-4 py-2 rounded-md bg-cyan-500 hover:bg-cyan-600 text-white">
-                        Đăng nhập
-                    </button>
-                    <button id="heroRegisterBtn" class="px-4 py-2 rounded-md border border-cyan-500 text-cyan-500 hover:bg-cyan-50">
-                        Đăng ký
-                    </button>
-                </div>
-                
             </div>
             
             <div class="md:w-1/2 flex justify-center">
@@ -960,170 +901,39 @@
     </div>
 
 
-    <!-- Account Info Modal -->
-    <div id="accountInfoModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-white dark:bg-gray-800 rounded-lg p-6 w-full max-w-md mx-4 md:mx-auto">
-            <div class="flex justify-between items-center mb-4">
-                <h3 class="text-xl font-bold">Thông tin tài khoản</h3>
-                <div class="flex space-x-2">
-                    <button id="editAccountInfoBtn" class="text-cyan-500 hover:text-cyan-700">
-                        <i class="fas fa-edit"></i> Chỉnh sửa
-                    </button>
-                    <button id="closeAccountInfoModal" class="text-gray-500 hover:text-gray-700">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-            </div>
-            <div class="space-y-4">
-                <div class="flex items-center space-x-4 mb-4">
-                    <div class="w-16 h-16 rounded-full bg-gray-200 overflow-hidden">
-                        <img src="https://i.postimg.cc/TwSZBJrZ/CMS-user-logo.png" alt="Guest Avatar" class="w-full h-full object-cover">
-                    </div>
-                    <div>
-                        <label class="block text-gray-700 dark:text-gray-300 mb-1">Tên đăng nhập</label>
-                        <div class="bg-gray-100 dark:bg-gray-700 p-2 rounded-md" id="accountInfoUsername"></div>
-                        <div class="mt-1 text-sm" id="vipStatus">
-                            <span class="text-gray-600 dark:text-gray-300">VIP: </span>
-                            <span class="text-orange-500 font-medium">Chưa kích hoạt</span>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <label class="block text-gray-700 dark:text-gray-300 mb-1">Email Google Play</label>
-                    <div class="bg-gray-100 dark:bg-gray-700 p-2 rounded-md" id="accountInfoEmail"></div>
-                </div>
-                <div>
-                    <label class="block text-gray-700 dark:text-gray-300 mb-1">Số điện thoại Zalo</label>
-                    <div class="bg-gray-100 dark:bg-gray-700 p-2 rounded-md" id="accountInfoPhone"></div>
-                </div>
-                <div>
-                    <label class="block text-gray-700 dark:text-gray-300 mb-1">Ngày đăng ký</label>
-                    <div class="bg-gray-100 dark:bg-gray-700 p-2 rounded-md" id="accountInfoDate"></div>
-                </div>
-                <div>
-                    <label class="block text-gray-700 dark:text-gray-300 mb-1">Rank hiện tại</label>
-                    <div class="bg-gray-100 dark:bg-gray-700 p-2 rounded-md" id="accountInfoRank"></div>
-                </div>
-                <div>
-                    <label class="block text-gray-700 dark:text-gray-300 mb-1">Cấp độ</label>
-                    <div class="bg-gray-100 dark:bg-gray-700 p-2 rounded-md" id="accountInfoLevel"></div>
-                </div>
-            </div>
+
+
+    <!-- AD Blocker Popup -->
+    <div id="adBlockerPopup" class="hidden fixed inset-0 bg-black bg-opacity-80 z-[10000] flex items-center justify-center">
+        <div class="bg-white dark:bg-gray-800 rounded-xl p-8 max-w-md mx-4">
+            <h3 class="text-2xl font-bold text-red-600 dark:text-red-500 mb-4">
+                <i class="fas fa-exclamation-triangle mr-2"></i>
+                AD Blocker Detected
+            </h3>
+            <p class="text-gray-700 dark:text-gray-300 mb-4">
+                Please disable your ad blocker to use all features of this website. Some functionality may not work properly with an ad blocker enabled.
+            </p>
+            <button onclick="document.getElementById('adBlockerPopup').classList.add('hidden')" 
+                    class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded w-full">
+                I Understand
+            </button>
         </div>
     </div>
 
-    <!-- Login Modal -->
-    <div id="loginModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-white dark:bg-gray-800 rounded-lg p-6 w-full max-w-xl mx-4 md:mx-auto">
-            <div class="flex justify-between items-center mb-4">
-                <h3 class="text-xl font-bold">Đăng nhập</h3>
-                <button id="closeLoginModal" class="text-gray-500 hover:text-gray-700">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <form id="loginForm">
-                <div class="mb-4">
-                    <label class="block text-gray-700 dark:text-gray-300 mb-2">Tên đăng nhập</label>
-                    <input type="text" id="loginUsername" class="w-full px-3 py-2 border-2 border-orange-500 bg-gray-100 font-bold text-gray-900 rounded-md" maxlength="6" pattern=".{1,6}" title="Tên đăng nhập tối đa 6 ký tự" required>
-                </div>
-                <div class="mb-4">
-                    <label class="block text-gray-700 dark:text-gray-300 mb-2">Mật khẩu</label>
-                    <input type="password" id="loginPassword" class="w-full px-3 py-2 border-2 border-orange-500 bg-gray-100 font-bold text-gray-900 rounded-md" required>
-                </div>
-                <button type="submit" class="w-full bg-cyan-500 hover:bg-cyan-600 text-white py-2 rounded-md">
-                    Đăng nhập
-                </button>
-                <div id="loginError" class="text-red-500 text-sm mt-2 hidden"></div>
-                <div class="text-center text-sm mt-3">
-                    <div class="mb-2">
-                        <a href="#" id="forgotPasswordLink" class="text-orange-500 hover:underline">
-                            Bạn quên mật khẩu ư?
-                        </a>
-                    </div>
-                    Bạn chưa có tài khoản? 
-                    <a href="#" onclick="document.getElementById('closeLoginModal').click(); document.getElementById('registerBtn').click(); return false;" class="text-orange-500 hover:underline">
-                        Đăng ký tại đây
-                    </a>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- Forgot Password Modal -->
-    <div id="forgotPasswordModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-white dark:bg-gray-800 rounded-lg p-6 w-full max-w-sm mx-auto">
-            <div class="flex justify-between items-center mb-4">
-                <h3 class="text-xl font-bold">Hỗ trợ qua Zalo</h3>
-                <button id="closeForgotPasswordModal" class="text-gray-500 hover:text-gray-700">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="text-center mb-4">
-                <p class="text-gray-700 dark:text-gray-300 mb-4">Quét mã QR Zalo để được hỗ trợ khôi phục mật khẩu</p>
-                <img src="https://i.postimg.cc/2jLDwRzT/My-zalo-QR.jpg" 
-                     alt="Zalo QR Code" 
-                     class="w-full max-w-xs mx-auto rounded-lg shadow-md">
-            </div>
-        </div>
-    </div>
-
-    <!-- Register Modal -->
-    <div id="registerModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
-        <div class="bg-white dark:bg-gray-800 rounded-lg p-6 w-full max-w-sm mx-auto my-4">
-            <div class="flex justify-between items-center mb-4">
-                <h3 class="text-xl font-bold">Đăng ký</h3>
-                <button id="closeRegisterModal" class="text-gray-500 hover:text-gray-700">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <form id="registerForm" class="space-y-3">
-                <div>
-                    <label class="block text-gray-700 dark:text-gray-300 mb-1 text-sm">Tên đăng nhập</label>
-                    <input type="text" id="registerUsername" class="w-full px-3 py-2 border-2 border-orange-500 bg-gray-100 font-bold text-gray-900 rounded-md text-sm" maxlength="6" pattern=".{1,6}" title="Tên đăng nhập tối đa 6 ký tự" required>
-                </div>
-                <div>
-                    <label class="block text-gray-700 dark:text-gray-300 mb-1 text-sm">Email Google Play</label>
-                    <input type="email" id="registerEmail" class="w-full px-3 py-2 border-2 border-orange-500 bg-gray-100 font-bold text-gray-900 rounded-md text-sm" 
-                           pattern="[a-zA-Z0-9._%+-]+@gmail\.com$" title="Vui lòng sử dụng địa chỉ Gmail (@gmail.com)" required>
-                </div>
-                <div>
-                    <label class="block text-gray-700 dark:text-gray-300 mb-1 text-sm">Số điện thoại Zalo</label>
-                    <input type="tel" id="registerPhone" class="w-full px-3 py-2 border-2 border-orange-500 bg-gray-100 font-bold text-gray-900 rounded-md text-sm" 
-                           pattern="\+84[0-9]{9,15}" title="Vui lòng nhập số điện thoại Zalo bắt đầu bằng +84" placeholder="+84..." required>
-                </div>
-                <div>
-                    <label class="block text-gray-700 dark:text-gray-300 mb-1 text-sm">Mật khẩu</label>
-                    <input type="password" id="registerPassword" class="w-full px-3 py-2 border-2 border-orange-500 bg-gray-100 font-bold text-gray-900 rounded-md text-sm" required>
-                </div>
-                <div>
-                    <label class="block text-gray-700 dark:text-gray-300 mb-1 text-sm">Rank hiện tại</label>
-                    <select id="registerRank" class="w-full px-3 py-2 border-2 border-orange-500 bg-gray-100 font-bold text-gray-900 rounded-md text-sm" required>
-                        <option value="" disabled selected>Chọn rank</option>
-                        <option value="Sắt">Sắt</option>
-                        <option value="Đồng">Đồng</option>
-                        <option value="Vàng">Vàng</option>
-                        <option value="Bạch Kim">Bạch Kim</option>
-                        <option value="Ascendant">Ascendant</option>
-                        <option value="Ưu tú">Ưu tú</option>
-                        <option value="Huyền thoại">Huyền thoại</option>
-                        <option value="Nhà Vô Địch">Nhà Vô Địch</option>
-                    </select>
-                </div>
-                <div>
-                    <label class="block text-gray-700 dark:text-gray-300 mb-1 text-sm">Lv. hiện tại</label>
-                    <input type="number" class="w-full px-3 py-2 border-2 border-orange-500 bg-gray-100 font-bold text-gray-900 rounded-md text-sm" 
-                           placeholder="VD: 30, 45, 60..." required>
-                </div>
-                <button type="submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white py-2 rounded-md text-sm">
-                    Đăng ký
-                </button>
-                <div class="text-center text-sm mt-3">
-                    Bạn đã có tài khoản? 
-                    <a href="#" onclick="document.getElementById('closeRegisterModal').click(); document.getElementById('loginBtn').click(); return false;" class="text-cyan-500 hover:underline">
-                        Đăng nhập tại đây
-                    </a>
-                </div>
-            </form>
+    <!-- VPN Popup -->
+    <div id="vpnPopup" class="hidden fixed inset-0 bg-black bg-opacity-80 z-[10000] flex items-center justify-center">
+        <div class="bg-white dark:bg-gray-800 rounded-xl p-8 max-w-md mx-4">
+            <h3 class="text-2xl font-bold text-orange-600 dark:text-orange-500 mb-4">
+                <i class="fas fa-shield-alt mr-2"></i>
+                VPN Detected
+            </h3>
+            <p class="text-gray-700 dark:text-gray-300 mb-4">
+                Using a VPN may affect your experience on this website. For best performance, please disable your VPN.
+            </p>
+            <button onclick="document.getElementById('vpnPopup').classList.add('hidden')" 
+                    class="bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded w-full">
+                Continue Anyway
+            </button>
         </div>
     </div>
 
@@ -1268,85 +1078,6 @@
         const closeLoginModal = document.getElementById('closeLoginModal');
         const closeRegisterModal = document.getElementById('closeRegisterModal');
 
-        // Account info modal
-        const accountInfoModal = document.getElementById('accountInfoModal');
-        const closeAccountInfoModal = document.getElementById('closeAccountInfoModal');
-        const accountInfoBtn = document.getElementById('accountInfoBtn');
-        const mobileAccountInfoBtn = document.getElementById('mobileAccountInfoBtn');
-
-        // Show account info
-        function showAccountInfo() {
-            const username = localStorage.getItem('username') || 'Khách';
-            const email = localStorage.getItem('email') || 'Chưa cập nhật';
-            const phone = localStorage.getItem('phone') || 'Chưa cập nhật';
-            const registerDate = localStorage.getItem('registerDate') || new Date().toLocaleDateString('vi-VN');
-            const rank = localStorage.getItem('rank') || 'Chưa xác định';
-            const level = localStorage.getItem('level') || '1';
-            const isVip = localStorage.getItem('isVip') === 'true';
-            
-            document.getElementById('accountInfoEmail').textContent = email;
-            document.getElementById('accountInfoPhone').textContent = phone;
-            
-            // Update VIP status display
-            const vipStatusElement = document.getElementById('vipStatus');
-            if (isVip) {
-                vipStatusElement.innerHTML = `
-                    <span class="text-gray-600 dark:text-gray-300">VIP: </span>
-                    <span class="text-orange-500 font-medium">Đã kích hoạt</span>
-                    <span class="vip-badge ml-2 text-xs">
-                        <i class="fas fa-crown"></i> VIP
-                    </span>
-                `;
-            }
-            
-            document.getElementById('accountInfoUsername').textContent = username;
-            document.getElementById('accountInfoDate').textContent = registerDate;
-            document.getElementById('accountInfoRank').textContent = rank;
-            document.getElementById('accountInfoLevel').textContent = level;
-            
-            toggleModal(accountInfoModal);
-            
-            // Close dropdowns
-            if (profileDropdown) profileDropdown.classList.add('hidden');
-            if (mobileProfileDropdown) mobileProfileDropdown.classList.add('hidden');
-        }
-
-        // Toggle modals
-        const toggleModal = (modal) => {
-            modal.classList.toggle('hidden');
-            document.body.style.overflow = modal.classList.contains('hidden') ? 'auto' : 'hidden';
-        };
-
-        // Forgot password modal
-        const forgotPasswordLink = document.getElementById('forgotPasswordLink');
-        const forgotPasswordModal = document.getElementById('forgotPasswordModal');
-        const closeForgotPasswordModal = document.getElementById('closeForgotPasswordModal');
-
-        forgotPasswordLink?.addEventListener('click', (e) => {
-            e.preventDefault();
-            toggleModal(loginModal);
-            toggleModal(forgotPasswordModal);
-        });
-
-        closeForgotPasswordModal?.addEventListener('click', () => toggleModal(forgotPasswordModal));
-
-        // Login/Register button handlers
-        [loginBtn, mobileLoginBtn, document.getElementById('heroLoginBtn')].forEach(btn => {
-            btn?.addEventListener('click', () => {
-                toggleModal(loginModal);
-                // Hide mobile menu if visible
-                if (!mobileMenu.classList.contains('hidden')) {
-                    mobileMenuClose.click();
-                }
-            });
-        });
-
-        [registerBtn, mobileRegisterBtn, document.getElementById('heroRegisterBtn')].forEach(btn => {
-            btn?.addEventListener('click', () => toggleModal(registerModal));
-        });
-
-        closeLoginModal.addEventListener('click', () => toggleModal(loginModal));
-        closeRegisterModal.addEventListener('click', () => toggleModal(registerModal));
 
         mobileMenuButton.addEventListener('click', () => {
             mobileMenu.classList.remove('hidden', 'translate-x-full');
@@ -1362,48 +1093,11 @@
             }, 300);
         });
 
-        // Mobile logout handler
-        document.getElementById('mobileLogoutBtn')?.addEventListener('click', function(e) {
-            e.preventDefault();
-            localStorage.removeItem('isLoggedIn');
-            localStorage.removeItem('username');
-            
-            // Show login/register buttons
-            document.querySelectorAll('#authButtons, #mobileAuthButtons, #loginBtn, #registerBtn, #mobileLoginBtn, #mobileRegisterBtn').forEach(el => {
-                el.classList.remove('hidden');
-            });
-            
-            // Hide profile sections
-            document.getElementById('userProfile').classList.add('hidden');
-            document.getElementById('mobileUserProfile').classList.add('hidden');
-            
-            // Close dropdown
-            if (mobileProfileDropdown) mobileProfileDropdown.classList.add('hidden');
-            
-            // Close mobile menu
-            mobileMenuClose.click();
-        });
-
         // Profile dropdown functionality
         const profileDropdownBtn = document.getElementById('profileDropdownBtn');
         const profileDropdown = document.getElementById('profileDropdown');
         const mobileProfileDropdownBtn = document.getElementById('mobileProfileDropdownBtn');
         const mobileProfileDropdown = document.getElementById('mobileProfileDropdown');
-
-        // Account info button handlers
-        accountInfoBtn?.addEventListener('click', (e) => {
-            e.preventDefault();
-            showAccountInfo();
-        });
-
-        mobileAccountInfoBtn?.addEventListener('click', (e) => {
-            e.preventDefault();
-            showAccountInfo();
-            // Close mobile menu
-            mobileMenuClose.click();
-        });
-
-        closeAccountInfoModal?.addEventListener('click', () => toggleModal(accountInfoModal));
 
         // Toggle dropdowns
         profileDropdownBtn?.addEventListener('click', (e) => {
@@ -1421,41 +1115,6 @@
             profileDropdown?.classList.add('hidden');
             mobileProfileDropdown?.classList.add('hidden');
         });
-
-        // Logout functionality
-        document.getElementById('logoutBtn')?.addEventListener('click', function(e) {
-            e.preventDefault();
-            localStorage.removeItem('isLoggedIn');
-            localStorage.removeItem('username');
-            
-            // Show login/register buttons
-            document.querySelectorAll('#heroLoginBtn, #heroRegisterBtn, #mobileLoginBtn, #mobileRegisterBtn').forEach(el => {
-                el.classList.remove('hidden');
-            });
-            
-            // Hide profile sections
-            document.getElementById('userProfile').classList.add('hidden');
-            document.getElementById('mobileUserProfile').classList.add('hidden');
-            
-            // Close dropdowns
-            if (profileDropdown) profileDropdown.classList.add('hidden');
-            if (mobileProfileDropdown) mobileProfileDropdown.classList.add('hidden');
-            
-            // Close mobile menu if open
-            if (!mobileMenu.classList.contains('hidden')) {
-                mobileMenuClose.click();
-            }
-        });
-
-        // Check mobile login state on page load
-        if (localStorage.getItem('isLoggedIn') === 'true') {
-            document.getElementById('mobileAuthButtons').classList.add('hidden');
-            document.getElementById('mobileUserProfile').classList.remove('hidden');
-            document.getElementById('mobileUsernameDisplay').textContent = localStorage.getItem('username');
-        } else {
-            document.getElementById('mobileAuthButtons').classList.remove('hidden');
-            document.getElementById('mobileUserProfile').classList.add('hidden');
-        }
 
         // Close menu when clicking on links
         mobileMenu.querySelectorAll('a').forEach(link => {
@@ -1571,148 +1230,85 @@
             });
         });
 
-        // Handle login form submission
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const username = document.getElementById('loginUsername').value;
-            const password = document.getElementById('loginPassword').value;
-            
-            // Simple validation
-            if (!username || !password) {
-                document.getElementById('loginError').textContent = 'Vui lòng nhập đầy đủ thông tin';
-            } else if (username.length > 6) {
-                document.getElementById('loginError').textContent = 'Tên đăng nhập tối đa 6 ký tự';
-                document.getElementById('loginError').classList.remove('hidden');
-                return;
-            }
-            
-            // Simulate successful login
-            setTimeout(() => {
-                // Close modal
-                toggleModal(loginModal);
-                
-                // Update UI to show logged in state
-                document.querySelectorAll('#heroLoginBtn, #heroRegisterBtn, #mobileLoginBtn, #mobileRegisterBtn').forEach(el => {
-                    el.classList.add('hidden');
-                });
-                document.getElementById('userProfile').classList.remove('hidden');
-                document.getElementById('mobileUserProfile').classList.remove('hidden');
-                document.getElementById('usernameDisplay').textContent = username;
-                document.getElementById('mobileUsernameDisplay').textContent = username;
-                
-                // Show VIP badge if account is VIP
-                const isVip = localStorage.getItem('isVip') === 'true';
-                if (isVip) {
-                    document.getElementById('vipBadge').classList.remove('hidden');
-                    document.getElementById('mobileVipBadge').classList.remove('hidden');
-                }
-                
-                // Store login state in localStorage
-                localStorage.setItem('isLoggedIn', 'true');
-                localStorage.setItem('username', username);
-            }, 500);
-        });
-
-        // API Configuration
-        const API_URL = "https://script.google.com/macros/s/AKfycbyabtpDMvhFyCh3mtBkjmauasWmS-bjn09sthKUk8xUm8zWG_KItd9vRJn5f-0mkkhVUQ/exec";
-        const SECRET_KEY = "Cuonguuu1u2u3u@";
-
-        // Handle register form submission with API
-        document.getElementById('registerForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const username = document.getElementById('registerUsername').value;
-            const email = document.getElementById('registerEmail').value;
-            const phone = document.getElementById('registerPhone').value;
-            const password = document.getElementById('registerPassword').value;
-            const rank = document.getElementById('registerRank').value;
-            const level = document.querySelector('#registerForm input[type="number"]').value;
-            
-            // Validation
-            if (!username || !email || !phone || !password || !rank || !level) {
-                alert('Vui lòng nhập đầy đủ thông tin');
-                return;
-            } else if (username.length > 6) {
-                alert('Tên đăng nhập tối đa 6 ký tự');
-                return;
-            }
-
-            try {
-                const response = await fetch(API_URL, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        action: "register",
-                        key: SECRET_KEY,
-                        username: username,
-                        email: email,
-                        phone: phone,
-                        rank: rank,
-                        level: level
-                    })
-                });
-
-                const result = await response.json();
-                
-                if (result.success) {
-                    // Save account info locally
-                    localStorage.setItem('registerDate', new Date().toLocaleDateString('vi-VN'));
-                    localStorage.setItem('email', email);
-                    localStorage.setItem('phone', phone);
-                    localStorage.setItem('rank', rank);
-                    localStorage.setItem('level', level);
-                    
-                    // Close modal
-                    toggleModal(registerModal);
-                    
-                    // Show success message
-                    alert(`Đăng ký tài khoản ${username} thành công!`);
-                    
-                    // Auto-login after registration
-                    document.getElementById('loginUsername').value = username;
-                    document.getElementById('loginPassword').value = password;
-                    document.getElementById('loginForm').dispatchEvent(new Event('submit'));
-                } else {
-                    alert("Lỗi đăng ký: " + result.message);
-                }
-            } catch (error) {
-                console.error("Lỗi API:", error);
-                alert("Có lỗi xảy ra khi kết nối đến server");
-            }
-        });
-
-        // Check login state on page load
-        if (localStorage.getItem('isLoggedIn') === 'true') {
-            document.querySelectorAll('#heroLoginBtn, #heroRegisterBtn, #mobileLoginBtn, #mobileRegisterBtn').forEach(el => {
-                el.classList.add('hidden');
-            });
-            document.getElementById('userProfile').classList.remove('hidden');
-            document.getElementById('mobileUserProfile').classList.remove('hidden');
-            document.getElementById('usernameDisplay').textContent = localStorage.getItem('username');
-            document.getElementById('mobileUsernameDisplay').textContent = localStorage.getItem('username');
-            
-            // Show VIP badge if account is VIP
-            const isVip = localStorage.getItem('isVip') === 'true';
-            if (isVip) {
-                document.getElementById('vipBadge').classList.remove('hidden');
-                document.getElementById('mobileVipBadge').classList.remove('hidden');
-            }
-            
-            // Ensure mobile menu is also updated if it's open
-            if (!mobileMenu.classList.contains('hidden')) {
-                document.getElementById('mobileAuthButtons').classList.add('hidden');
-                document.getElementById('mobileUserProfile').classList.remove('hidden');
-            }
-        }
-
-        // Edit account info handler
-        document.getElementById('editAccountInfoBtn').addEventListener('click', function() {
-            alert('Tính năng này không được tự ý chỉnh sửa. Nếu bạn muốn chỉnh sửa thông tin, vui lòng liên hệ Zalo để được hỗ trợ.');
-        });
-
         // Force dark mode by default
         document.documentElement.classList.add('dark');
+
+        // AD Blocker detection
+        function detectAdBlocker() {
+            return new Promise((resolve) => {
+                const ad = document.createElement('div');
+                ad.innerHTML = '&nbsp;';
+                ad.className = 'adsbox';
+                ad.style.position = 'absolute';
+                ad.style.left = '-9999px';
+                ad.style.height = '1px';
+                document.body.appendChild(ad);
+                
+                setTimeout(() => {
+                    const isBlocked = ad.offsetHeight === 0;
+                    document.body.removeChild(ad);
+                    resolve(isBlocked);
+                }, 100);
+            });
+        }
+
+        // VPN detection
+        function detectVPN() {
+            return new Promise((resolve) => {
+                // Check timezone offset (crude method)
+                const timezoneOffset = new Date().getTimezoneOffset();
+                const isSuspicious = timezoneOffset % 60 !== 0;
+                
+                // Check language mismatch
+                const browserLanguage = navigator.language || navigator.userLanguage;
+                const isLanguageMismatch = !browserLanguage.includes('vi') && !browserLanguage.includes('en');
+                
+                resolve(isSuspicious || isLanguageMismatch);
+            });
+        }
+
+        // Run detections on page load
+        window.addEventListener('load', async () => {
+            // Check AD blocker
+            const isAdBlockerOn = await detectAdBlocker();
+            if (isAdBlockerOn) {
+                document.getElementById('adBlockerPopup').classList.remove('hidden');
+            }
+
+            // Check VPN
+            const isVPNOn = await detectVPN();
+            if (isVPNOn) {
+                document.getElementById('vpnPopup').classList.remove('hidden');
+            }
+        });
+
+        // Browser detection
+        const supportedBrowsers = [
+            'Chrome', 'Firefox', 'Safari', 'Edge', 'Opera', 'Brave'
+        ];
+        
+        function detectBrowser() {
+            const userAgent = navigator.userAgent;
+            let browserName;
+            
+            if (userAgent.includes("Firefox")) browserName = "Firefox";
+            else if (userAgent.includes("SamsungBrowser")) browserName = "Samsung";
+            else if (userAgent.includes("Opera") || userAgent.includes("OPR")) browserName = "Opera";
+            else if (userAgent.includes("Trident")) browserName = "IE";
+            else if (userAgent.includes("Edge")) browserName = "Edge";
+            else if (userAgent.includes("Chrome")) browserName = "Chrome";
+            else if (userAgent.includes("Safari")) browserName = "Safari";
+            else if (userAgent.includes("Brave")) browserName = "Brave";
+            else browserName = "Unknown";
+            
+            return browserName;
+        }
+        
+        // Check browser on page load
+        const currentBrowser = detectBrowser();
+        if (!supportedBrowsers.some(b => currentBrowser.includes(b))) {
+            document.getElementById('unsupportedBrowserPopup').classList.remove('hidden');
+        }
     </script>
 </body>
 </html>
