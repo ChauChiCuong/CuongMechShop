@@ -47,19 +47,18 @@
         }
         
         .maintenance-popup {
-            background-color: #8080ff
-; /* White with cyan tint */
+            background-color: #000000; /* Black background */
             padding: 30px;
             border-radius: 10px;
             max-width: 400px;
             text-align: center;
             box-shadow: 0 0 20px rgba(0,188,212,0.2);
-            border: 3px solid #8080ff; /* Cyan border */
+            border: 3px solid #00BCD4; /* Cyan border */
         }
         
         .maintenance-popup h3 {
             font-size: 24px;
-            color: #001a1a; /* Darker cyan text */
+            color: #00BCD4; /* Cyan text */
             margin-bottom: 15px;
             font-weight: bold;
             display: flex;
@@ -355,9 +354,9 @@
                 <i class="fas fa-exclamation-triangle"></i>
                 Thông báo
             </h3>
-            <p class="text-white font-medium">Trang web Cuong Mech Shop đã gỡ bỏ tính năng tài khoản người dùng. Và tất cả các tài khoản đã bị xóa, kể cả tài khoản Admin. Shop sẽ cập nhật lại tính năng tài khoản trong vài ngày tới.</p>
+            <p class="text-w-500 font-medium">Trang web Cuong Mech Shop đã gỡ bỏ tính năng tài khoản người dùng. Và tất cả các tài khoản đã bị xóa, kể cả tài khoản Admin. Shop sẽ cập nhật lại tính năng tài khoản trong vài ngày tới.</p>
             <button onclick="document.querySelector('.maintenance-overlay').classList.add('fade-out'); setTimeout(() => { document.querySelector('.maintenance-overlay').style.display='none' }, 1000)" 
-                    class="bg-white hover:bg-white-100 text-white-500 font-bold py-2 px-4 rounded mt-4">
+                    class="bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-2 px-4 rounded mt-4">
                 Tôi đã hiểu
             </button>
         </div>
@@ -439,6 +438,9 @@
                     </a>
                     <a href="#services" class="border-2 border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white font-bold py-3 px-6 rounded-full shadow transition duration-300 text-center">
                         Menu Shop
+                    </a>
+                    <a href="#" class="border-2 border-cyan-500 text-cyan-500 hover:bg-cyan-500 hover:text-white font-bold py-3 px-6 rounded-full shadow transition duration-300 text-center mt-4">
+                        CMS Blog
                     </a>
                 </div>
             </div>
@@ -938,10 +940,15 @@
         </div>
     </div>
 
-    <!-- Scroll to Top Button -->
-    <button id="scrollToTopBtn" class="fixed bottom-8 right-8 w-12 h-12 rounded-full bg-cyan-500 text-white shadow-lg transition-all duration-300 opacity-0 invisible flex items-center justify-center hover:bg-cyan-600">
-        <i class="fas fa-arrow-up text-xl"></i>
-    </button>
+    <!-- Contact and Scroll to Top Buttons -->
+    <div class="fixed right-8 bottom-20 space-y-4">
+        <button id="contactBtn" class="w-12 h-12 rounded-full bg-orange-500 text-white shadow-lg transition-all duration-300 flex items-center justify-center hover:bg-orange-600">
+            <i class="fas fa-phone-alt text-xl"></i>
+        </button>
+        <button id="scrollToTopBtn" class="w-12 h-12 rounded-full bg-cyan-500 text-white shadow-lg transition-all duration-300 opacity-0 invisible flex items-center justify-center hover:bg-cyan-600">
+            <i class="fas fa-arrow-up text-xl"></i>
+        </button>
+    </div>
 
     <!-- Footer -->
     <footer class="bg-gray-900 text-gray-300 py-8">
@@ -1201,18 +1208,25 @@
         fetch('https://api.ipify.org?format=json')
             .then(response => response.json())
             .then(data => {
-                deviceInfo.textContent = `Thiết bị: ${platform} | ID: ${deviceIdHash()} | IP: ${data.ip}`;
+                deviceInfo.textContent = `ID: ${deviceIdHash()} | IP: ${data.ip}`;
             })
             .catch(() => {
-                deviceInfo.textContent = `Thiết bị: ${platform} | ID: ${deviceIdHash()} | IP: Không xác định`;
+                deviceInfo.textContent = `ID: ${deviceIdHash()} | IP: Không xác định`;
             });
 
         // Update time every second
         updateTime();
         setInterval(updateTime, 1000);
 
-        // Scroll to top button functionality
+        // Contact and scroll to top buttons functionality
+        const contactBtn = document.getElementById('contactBtn');
         const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+        
+        contactBtn.addEventListener('click', () => {
+            document.getElementById('contact').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
         
         window.addEventListener('scroll', () => {
             if (window.pageYOffset > 300) {
