@@ -283,6 +283,44 @@
     </style>
 </head>
 <body>
+    <!-- Welcome Popup -->
+    <div id="welcomePopup" class="fixed inset-0 bg-black bg-opacity-80 z-[9999] flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-gray-800 rounded-xl overflow-hidden w-full max-w-4xl" style="aspect-ratio: 16/9;">
+            <div class="relative h-full">
+                <img src="https://i.postimg.cc/CLNSZCMV/cuong-mech-shop-1.png" 
+                     alt="Welcome to Cuong Mech Shop" 
+                     class="w-full h-full object-cover">
+                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 text-center">
+                    <h3 class="text-2xl font-bold text-white mb-2">Chào mừng đến với Cuong Mech Shop</h3>
+                    <p class="text-gray-300">Dịch vụ buôn bán Mech chuyên nghiệp, chất lượng cao</p>
+                </div>
+            </div>
+            <button onclick="closeFirstPopup()" 
+                    class="absolute top-4 right-4 bg-white/30 hover:bg-white/50 text-white rounded-full w-10 h-10 flex items-center justify-center">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Second Popup -->
+    <div id="secondPopup" class="hidden fixed inset-0 bg-black bg-opacity-80 z-[9999] flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-gray-800 rounded-xl overflow-hidden w-full max-w-4xl" style="aspect-ratio: 16/9;">
+            <div class="relative h-full">
+                <img src="https://i.postimg.cc/7PRbf6Lp/t-o-h-nh-nh-16-9-l.png" 
+                     alt="Special Offer" 
+                     class="w-full h-full object-cover">
+                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 text-center">
+                    <h3 class="text-2xl font-bold text-white mb-2">Sự kiện mới</h3>
+                    <p class="text-gray-300">Thẻ thành viên CMS VIP CARD MEMBER</p>
+                </div>
+            </div>
+            <button onclick="document.getElementById('secondPopup').classList.add('hidden')" 
+                    class="absolute top-4 right-4 bg-white/30 hover:bg-white/50 text-white rounded-full w-10 h-10 flex items-center justify-center">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
+
     <!-- Unsupported Browser Popup -->
     <div id="unsupportedBrowserPopup" class="hidden fixed inset-0 bg-black bg-opacity-80 z-[9999] flex items-center justify-center">
         <div class="bg-white dark:bg-gray-800 rounded-xl p-8 max-w-md mx-4">
@@ -1229,11 +1267,24 @@
             });
         });
 
+        // Function to close first popup and show second one
+        function closeFirstPopup() {
+            document.getElementById('welcomePopup').classList.add('hidden');
+            setTimeout(() => {
+                document.getElementById('secondPopup').classList.remove('hidden');
+            }, 500);
+        }
+
         // Initialize animations after slight delay to ensure content is visible
         document.addEventListener('DOMContentLoaded', () => {
             createParticles();
             // Make sure content is visible immediately
             document.body.style.opacity = '1';
+            
+            // Show welcome popup
+            setTimeout(() => {
+                document.getElementById('welcomePopup').classList.remove('hidden');
+            }, 1000);
             
             setTimeout(() => {
                 animateOnScroll();
@@ -1452,4 +1503,3 @@
     </script>
 </body>
 </html>
-
