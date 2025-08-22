@@ -325,15 +325,34 @@
     <div id="thirdPopup" class="hidden fixed inset-0 bg-black bg-opacity-80 z-[9999] flex items-center justify-center p-4">
         <div class="bg-white dark:bg-gray-800 rounded-xl overflow-hidden w-full max-w-4xl" style="aspect-ratio: 16/9;">
             <div class="relative h-full">
-                <img src="https://i.postimg.cc/jC0F65Ys/Untitled-1.png" 
+                <img src="https://i.postimg.cc/V69HHsDD/cms-banner1.png" 
                      alt="Special Offer" 
                      class="w-full h-full object-cover">
                 <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 text-center">
                     <h3 class="text-2xl font-bold text-white mb-2">Súng ~Lv.1000</h3>
-                    <p class="text-gray-300">Mặt hàng sẽ xuất hiện trong Shop Đặc Biệt</p>
+                    <p class="text-gray-300">Mặt hàng sẽ đóng cửa trong Shop Đặc Biệt</p>
                 </div>
             </div>
-            <button onclick="document.getElementById('thirdPopup').classList.add('hidden')" 
+            <button onclick="closeThirdPopup()" 
+                    class="absolute top-4 right-4 bg-white/30 hover:bg-white/50 text-white rounded-full w-10 h-10 flex items-center justify-center">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Fourth Popup -->
+    <div id="fourthPopup" class="hidden fixed inset-0 bg-black bg-opacity-80 z-[9999] flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-gray-800 rounded-xl overflow-hidden w-full max-w-4xl" style="aspect-ratio: 16/9;">
+            <div class="relative h-full">
+                <img src="https://i.postimg.cc/NFgPhhnY/cms-banner.png" 
+                     alt="Final Offer" 
+                     class="w-full h-full object-cover">
+                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 text-center">
+                    <h3 class="text-2xl font-bold text-white mb-2">Mech War Anti-Cheat System</h3>
+                    <p class="text-gray-300">Các mặt hàng bất hợp pháp sẽ đóng cửa trong tất cả các Menu</p>
+                </div>
+            </div>
+            <button onclick="document.getElementById('fourthPopup').classList.add('hidden')" 
                     class="absolute top-4 right-4 bg-white/30 hover:bg-white/50 text-white rounded-full w-10 h-10 flex items-center justify-center">
                 <i class="fas fa-times"></i>
             </button>
@@ -640,21 +659,6 @@
                                 <li>Đặt tên dài.</li>
                                 <li>Chỉ số thông tin acc tùy chỉnh.</li>
                                 <li>Trắng thông tin.</li>
-                                <ul>-----------------</ul>
-                                </ul>
-                            <p class="mb-2">Tài khoản Acc_SuperRank_Pro_Max giá 1tr:</p>
-                            <ul class="list-disc pl-5 space-y-1">
-                                <li>Player Top ~100 rank toàn cầu.</li>
-                                <li>Rank Nhà Vô Địch.</li>
-                                <li>Lv.57~103 tùy chỉnh.</li>
-                                <li>10 mech bất kì full lv, full skill lv và skin bất kì.</li>
-                                <li>VIP 10000 ngày.</li>
-                                <li>2 tỉ Rương bạch kim.</li>
-                                <li>Vàng x2b.</li>
-                                <li>Đặt tên dài.</li>
-                                <li>Chỉ số thông tin acc tùy chỉnh.</li>
-                                <li>Trắng thông tin.</li>
-                                <ul></ul>
                                 </ul>
                         </div>
                     </div>
@@ -729,14 +733,14 @@
                         <div class="pt-4 text-gray-600">
                             <p class="mb-2">Các dịch vụ đặc biệt hiện có:</p>
                             <ul class="list-disc pl-5 space-y-1">
-                                <li><span style="text-decoration: line-through; color: red;">Mech Masamune bất tử: 1100 CMS Token</li>
+                                
                                 <li>Thẻ nhân đôi đơn hàng: 300 CMS Token</li>
                                 <li>Random Acc bất kì: 500 CMS Token</li>
-                                <li><span style="text-decoration: line-through; color: red;">Mech Nexus 1 hit: 1350 CMS Token</li>
+                                
                                 <li><span style="text-decoration: line-through; color: red;">1tr vàng: 100 CMS Token</li>
                                 <li><span style="text-decoration: line-through; color: red;">Combo 3 mech Prime full lv, full skill, skin huyền thoại: 500 CMS Token</li>
                                 <li><span style="text-decoration: line-through; color: red;">Account Top 100 server: 650 CMS Token</li>
-                                <li><span style="text-decoration: line-through; color: red;">Rương bạch kim vô hạn: 1000 CMS Token</li>
+                                
                             </ul>
                             <p class="mt-4 mb-2">Ưu đãi đặc biệt:</p>
                             <ul class="list-disc pl-5 space-y-1">
@@ -1304,6 +1308,14 @@
             }, 500);
         }
 
+        // Function to close third popup and show fourth one
+        function closeThirdPopup() {
+            document.getElementById('thirdPopup').classList.add('hidden');
+            setTimeout(() => {
+                document.getElementById('fourthPopup').classList.remove('hidden');
+            }, 500);
+        }
+
         // Initialize animations after slight delay to ensure content is visible
         document.addEventListener('DOMContentLoaded', () => {
             createParticles();
@@ -1532,5 +1544,4 @@
     </script>
 </body>
 </html>
-
 
